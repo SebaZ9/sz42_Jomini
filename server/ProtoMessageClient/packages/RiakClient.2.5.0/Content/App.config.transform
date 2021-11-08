@@ -1,0 +1,14 @@
+<configuration>
+    <configSections>
+        <section name="riakConfig" type="RiakClient.Config.RiakClusterConfiguration, RiakClient" />
+    </configSections>
+    <riakConfig nodePollTime="5000" defaultRetryWaitTime="200" defaultRetryCount="3">
+        <nodes>
+            <node name="riak1" hostAddress="riak-host1" pbcPort="8087" poolSize="20" />
+            <node name="riak2" hostAddress="riak-host2" pbcPort="8087" poolSize="20" />
+            <node name="riak3" hostAddress="riak-host3" pbcPort="8087" poolSize="20" />
+            <node name="riak4" hostAddress="riak-host4" pbcPort="8087" poolSize="20" />
+            <node name="riak5" hostAddress="riak-host5" pbcPort="8087" poolSize="20" />
+        </nodes>
+    </riakConfig>
+</configuration>

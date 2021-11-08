@@ -1,0 +1,93 @@
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.exe
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.deps.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.dev.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfoInputs.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfo.cs
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CoreCompileInputs.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CopyComplete
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\MscProject\AI_Agents\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.genruntimeconfig.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csprojAssemblyReference.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfoInputs.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfo.cs
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CoreCompileInputs.cache
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.exe
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.deps.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.dev.json
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CopyComplete
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Desktop\To up\0. HWU\Research Project\Visual Projects\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.genruntimeconfig.cache
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.exe
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.deps.json
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.json
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.dev.json
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.dll
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.dll
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfoInputs.cache
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfo.cs
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CoreCompileInputs.cache
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CopyComplete
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.genruntimeconfig.cache
+C:\Users\alloy\Documents\GitHub\AI_Jomini_Engine\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.AssemblyReference.cache
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.exe
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.deps.json
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.json
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.dev.json
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.dll
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.dll
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csprojAssemblyReference.cache
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfoInputs.cache
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfo.cs
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CoreCompileInputs.cache
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CopyComplete
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Dev\uni\JominiEngine\AI_Jomini_Engine-main\Test_communication_with_server\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.genruntimeconfig.cache
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.exe
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.deps.json
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.json
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.runtimeconfig.dev.json
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\Lidgren.Network.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csprojAssemblyReference.cache
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfoInputs.cache
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.AssemblyInfo.cs
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.csproj.CopyComplete
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.pdb
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.genruntimeconfig.cache
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\protobuf-net.Core.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\obj\Debug\netcoreapp3.1\Test_communication_with_server.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\QuickGraph.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\RiakClient.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\QuickGraph.Serialization.dll
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.pdb
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\ProtoMessageClient.dll.config
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\QuickGraph.xml
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\RiakClient.xml
+C:\Users\ACER\Documents\GitHub\sz42_Jomini\test_communications\Test_communication_with_server\bin\Debug\netcoreapp3.1\QuickGraph.Serialization.xml
