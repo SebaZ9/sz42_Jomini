@@ -31,7 +31,7 @@ public class Controller : MonoBehaviour
     public static string ipAddress = "192.168.0.16";
 
     public enum SceneName {
-        FiefDetails, LogIn, MainMenu, Map, ViewArmy, ViewCharacter, ViewFief, ViewingList, ViewJournalEntry, ViewArmiesList, ViewMyFiefsList, ChangeCharactersList
+        FiefDetails, LogIn, MainMenu, Map, ViewArmy, ViewCharacter, ViewFief, ViewingList, ViewJournalEntry, ViewArmiesList, ViewMyFiefsList, ChangeCharactersList, ViewJournalEntries
     }
 //
     public static ProtoClient protoClient;
@@ -55,6 +55,7 @@ public class Controller : MonoBehaviour
     public static Dictionary<string, string> fiefNames = new Dictionary<string, string>();
     public static Dictionary<string, string> fiefOwners = new Dictionary<string, string>();
     public static Dictionary<string, Color> ownerColours = new Dictionary<string, Color>();
+    public static Dictionary<string, string> charIdNames = new Dictionary<string, string>();
     public static List<Color> colours = new List<Color>();
 
 
@@ -93,6 +94,16 @@ public class Controller : MonoBehaviour
         return true;
     }
 
+    public static string GetCharName(string charID) {
+        if(charIdNames.ContainsKey(charID)) {
+            return charIdNames[charID];
+        } else {
+            ProtoCharacter character = GetCharacterDetails(charID, tclient);
+            charIdNames[charID] = character.firstName + " " + character.familyName;
+            return charIdNames[charID];
+        }
+    }
+
     public static IEnumerator SleepFunction(float t) {
         yield return new WaitForSeconds(t);
     }
@@ -108,9 +119,7 @@ public class Controller : MonoBehaviour
             receivedUpdateReply = true;
         }
 
-        //int elapsed = 0;
         do {
-            //reply = client.GetReply();
             reply = client.CheckForProtobufMessage();
             if(reply == null) { // wait time expired.
                 globalString = "You have been disconnected.";
@@ -142,25 +151,10 @@ public class Controller : MonoBehaviour
                 Debug.Log("Mismatching action found: " + reply.ActionType.ToString() + " /w " + reply.ResponseType.ToString());
             }
 
-//            Thread.Sleep(10);
-//            elapsed += 10;
-//            if(elapsed > 5000) {
-//#if UNITY_EDITOR
-//                UnityEditor.EditorApplication.isPlaying = false;
-//#endif
-//            }
         } while(!receivedActionReply || !receivedUpdateReply);
 
 
         return actionReply;
-
-        //ProtoMessage responseTask = client.GetReply();
-
-        //while(responseTask.ActionType != action) {
-        //    responseTask = client.GetReply();
-        //}
-        //client.ClearMessageQueues();
-        //return responseTask;
     }
 
     public static string SeasonToString(byte seasonCode) {

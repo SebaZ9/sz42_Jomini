@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ProtoMessageClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace JominiAI
 {
@@ -19,13 +21,78 @@ namespace JominiAI
     {
         static void Main(string[] args)
         {
-            AutoEvaluation(1);
+            //AutoEvaluation(1);
+
+
+            /*TextTestClient client = new TextTestClient();
+            client.LogInAndConnect("helen", "potato");
+
+            while(!client.IsConnectedAndLoggedIn()) {
+                Thread.Sleep(0);
+            }
+            if(client.IsConnectedAndLoggedIn()) {
+                Console.WriteLine("Logged in");
+
+                ProtoMessage request = new ProtoMessage {
+                    ActionType = Actions.ViewJournalEntries,
+                    Message = "all"
+                };
+                client.net.Send(request);
+                ProtoMessage journal = GetActionReply(Actions.ViewJournalEntries, client);
+                Console.WriteLine($"Journal Length: {((ProtoGenericArray<ProtoJournalEntry>)journal).fields.Length}");
+
+                client.LogOut();
+            }*/
+
 
             //RunAgent("helen", "potato", AgentTypes.RuleBased, false);
             //RunAgent("helen", "potato", AgentTypes.Script);
 
             //Evaluation.Army_1();
             Console.WriteLine("\nMain() finished");
+        }
+
+        public static ProtoMessage GetActionReply(Actions action, TextTestClient client) {
+            bool receivedActionReply = false;
+            bool receivedUpdateReply = false;
+            ProtoMessage reply;
+            ProtoMessage actionReply = null;
+
+            if (action == Actions.LogIn) {
+                receivedUpdateReply = true;
+            }
+            int i = 0;
+            do {
+                Console.WriteLine("Check for message : " + i++);
+                reply = client.CheckForProtobufMessage();
+                if (reply == null) { // wait time expired.
+                    client.LogOut();
+                    return null;
+                }
+
+                if (reply.ActionType == action) {
+                    Console.WriteLine("Correct action found: " + reply.ActionType.ToString() + " /w " + reply.ResponseType.ToString());
+                    actionReply = reply;
+                    receivedActionReply = true;
+                    receivedUpdateReply = true;
+                } else if (reply.ActionType == Actions.Update) {
+                    Console.WriteLine("Update action found: " + reply.ActionType.ToString() + " /w " + reply.ResponseType.ToString());
+                    if (reply.ResponseType == DisplayMessages.ErrorGenericMessageInvalid) {
+                        actionReply = reply; // When the server found something wrong with the action.
+                        receivedActionReply = true;
+                    }
+                    else if (reply.ResponseType == DisplayMessages.Success) {
+                        ProtoClient protoClient = (ProtoClient)reply;
+                        receivedUpdateReply = true;
+                    }
+                } else {
+                    Console.WriteLine("Mismatching action found: " + reply.ActionType.ToString() + " /w " + reply.ResponseType.ToString());
+                }
+
+            } while (!receivedActionReply || !receivedUpdateReply);
+
+            Console.WriteLine("Finished reply");
+            return actionReply;
         }
 
         /// <summary>

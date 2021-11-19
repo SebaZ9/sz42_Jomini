@@ -94,15 +94,7 @@ public class ViewingList : Controller
                 break;
             }
             case "Journal": {
-                lblPageTitle.text = "Journal";
-                listType = ListType.Journal;
-                ProtoMessage reply = ViewJournalEntries("all", tclient);
-                if(reply.ResponseType == DisplayMessages.JournalEntries) {
-                    journalList = (ProtoGenericArray<ProtoJournalEntry>)reply;
-                }
-                else {
-                    DisplayMessageToUser("ERROR: Response type: " + reply.ResponseType.ToString());
-                }
+                GoToScene(SceneName.ViewJournalEntries);
                 break;
             }
             default: {
@@ -149,42 +141,6 @@ public class ViewingList : Controller
                 }
                 break;
             }
-            case ListType.Journal: {
-                if(journalList.fields == null) {
-                    DisplayMessageToUser("There are no valid journal entries.");
-                    return;
-                }
-
-                label.GetComponent<Text>().text = string.Format("\t{0,-20}{1,-20}{2,-20}{3,-30}{4,-30}", "Entry ID", "Year", "Season", "Event", "Location");
-
-                foreach(ProtoJournalEntry journalEntry in journalList.fields) {
-                    CreatePanel(out panel, out label, out button);
-
-                    string season = SeasonToString(journalEntry.season);
-                    string location = string.IsNullOrWhiteSpace(journalEntry.location) ? "" : fiefNames[journalEntry.location];
-                    if(string.IsNullOrWhiteSpace(journalEntry.location)) {
-
-                    }
-                    label.GetComponent<Text>().text = string.Format("{0,-20}{1,-20}{2,-20}{3,-30}{4,-30}", journalEntry.jEntryID, journalEntry.year, season, journalEntry.type, location);
-
-                    //var lblContents = label.GetComponent<Text>();
-                    //lblContents.text = ""
-                    //    + journalEntry.jEntryID.ToString() + "\t\t\t"
-                    //    + journalEntry.year.ToString() + "\t\t\t"
-                    //    + SeasonToString(journalEntry.season) + "\t\t\t"
-                    //    + journalEntry.type + "\t\t"
-                    //    + journalEntry.location
-                    //    ;
-                    //if(journalEntry.type.Contains("death")) {
-                    //    lblContents.text += journalEntry.eventDetails.MessageFields[0];
-                    //}
-
-                    if(viewingListSelectAction.Equals("Journal")) {
-                        button.GetComponent<Button>().onClick.AddListener( () => { BtnViewJournalEntry(journalEntry.jEntryID); } );
-                    }
-                }
-                break;
-            }
         }
     }
 
@@ -214,11 +170,6 @@ public class ViewingList : Controller
         GoToScene(SceneName.ViewCharacter);
     }
 
-
-    private void BtnViewJournalEntry(uint jEntryID) {
-        journalEntryToViewID = jEntryID;
-        GoToScene(SceneName.ViewJournalEntry);
-    }
 
     private void BtnAppointBailiff(string charID) {
         ProtoMessage reply = AppointBailiff(charID, fiefToViewID, tclient);

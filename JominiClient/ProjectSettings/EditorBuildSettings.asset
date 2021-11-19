@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ViewingLists/ChangeCharactersList.unity
     guid: faf901683356fb349be3be939d7df120
+  - enabled: 1
+    path: Assets/Scenes/ViewingLists/ViewJournalEntries.unity
+    guid: 8938bdcaeb59a56408c8c33cbbd215f6
   m_configObjects: {}

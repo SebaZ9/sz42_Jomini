@@ -8,8 +8,9 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{14363F11-7D4D-FB8F-83A4-62653EA884BB}</ProjectGuid>
+    <RootNamespace>
+    </RootNamespace>
+    <ProjectGuid>{700D4F90-AC0D-49A7-3453-0299BBB1831F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -53,12 +54,15 @@
     <UnityVersion>2020.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\Scripts\ViewingLists\YourFiefs.cs" />
     <Compile Include="Assets\Code\Scripts\Controller.cs" />
     <Compile Include="Assets\Code\Scripts\NavigationUI.cs" />
     <Compile Include="Assets\Code\Scripts\TestTextClient.cs" />
     <Compile Include="Assets\Code\Scripts\CameraZoomContoller.cs" />
     <Compile Include="Assets\Code\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Code\Scripts\ViewingLists\YourCharacters.cs" />
     <Compile Include="Assets\Code\Scripts\MapManager.cs" />
+    <Compile Include="Assets\Code\Scripts\ViewingLists\YourArmies.cs" />
     <Compile Include="Assets\Code\Scripts\ViewArmy.cs" />
     <Compile Include="Assets\Code\Scripts\ViewJournalEntry.cs" />
     <Compile Include="Assets\Code\Scripts\GridManager.cs" />
@@ -68,9 +72,7 @@
     <Compile Include="Assets\Code\Scripts\ViewFief.cs" />
     <Compile Include="Assets\TilemapStuff\TilemapStuff.cs" />
     <Compile Include="Assets\Code\Scripts\ViewCharacter.cs" />
-    <Compile Include="Assets\Code\Scripts\ViewingLists\YourArmies.cs" />
-    <Compile Include="Assets\Code\Scripts\ViewingLists\YourFiefs.cs" />
-    <Compile Include="Assets\Code\Scripts\ViewingLists\YourCharacters.cs" />
+    <Compile Include="Assets\Code\Scripts\ViewingLists\JournalEntries.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

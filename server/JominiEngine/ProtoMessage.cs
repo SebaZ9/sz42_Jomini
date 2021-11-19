@@ -100,10 +100,22 @@ namespace JominiEngine {
             return this.MessageFields;
         }
         public ProtoMessage() {
+            if (MessageFields == null) {
+                MessageFields = new string[] { "None" };
+            }
+            if(Message == null) {
+                Message = "None";
+            }
         }
 
         public ProtoMessage(DisplayMessages result) {
             this.ResponseType = result;
+            if (MessageFields == null) {
+                MessageFields = new string[] { "None" };
+            }
+            if (Message == null) {
+                Message = "None";
+            }
         }
     }
 
@@ -1539,9 +1551,13 @@ namespace JominiEngine {
             this.eventDetails = j.entryDetails;
             this.viewed = j.viewed;
             this.replied = j.replied;
+            eventDetails.MessageFields = eventDetails.MessageFields.Where(e => e != null).ToArray();
             getCharacterOverviews(j);
+            if (MessageFields == null) {
+                MessageFields = new string[] { "None" };
+            }
 
-            Console.WriteLine("Entry type:" + this.type + ", entry year:" + this.year);
+            Console.WriteLine("Entry type: " + this.type + ", entry year: " + this.year);
         }
 
         public ProtoJournalEntry() : base() {

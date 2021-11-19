@@ -110,7 +110,7 @@ namespace JominiAI
         /// </summary>
         /// <returns>Message from server</returns>
         /// <throws>TaskCanceledException if task is cancelled</throws>
-        private ProtoMessage CheckForProtobufMessage()
+        public ProtoMessage CheckForProtobufMessage()
         {
             ProtoMessage m = null;
             var waitHandles = new WaitHandle[] { protobufMessageQueue.eventWaiter, net.ctSource.Token.WaitHandle };
