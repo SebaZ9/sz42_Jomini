@@ -35,21 +35,15 @@ public class ViewingList : Controller
 
     new void Initialise() {
         switch(viewingListSelectAction) {
-            case "ArmiesInFief": {
-                lblPageTitle.text = "Armies in " + fiefNames[fiefToViewID];
-                listType = ListType.Army;
-                ProtoMessage armiesInFief = ExamineArmiesInFief(fiefToViewID, tclient);
-                if(armiesInFief.ResponseType == DisplayMessages.Success) {
-                    armyList = (ProtoGenericArray<ProtoArmyOverview>)armiesInFief;
-                }
-                else {
-                    DisplayMessageToUser("ERROR: Response type: " + armiesInFief.ResponseType);
-                }
-                break;
+            case "ArmiesInFief":
+                {
+                    GoToScene(SceneName.ArmiesInFief);
+                    break;
             }
-            case "YourArmies": {
+            case "YourArmies":
+                {
                     GoToScene(SceneName.ViewArmiesList);
-                break;
+                    break;
             }
             case "Entourage": {
                 lblPageTitle.text = "Your Current Entourage";
@@ -57,20 +51,11 @@ public class ViewingList : Controller
                 break;
             }
             case "ListChars": {
-                lblPageTitle.text = "Persons present in the " + globalString + " of " + fiefNames[fiefToViewID];
-                listType = ListType.Character;
-                ProtoMessage reply = ListCharsInMeetingPlace(globalString, protoClient.activeChar.charID, tclient);
-                if(reply.ResponseType == DisplayMessages.Success) {
-                    characterList = (ProtoGenericArray<ProtoCharacterOverview>)reply;
-                }
-                else {
-                    DisplayMessageToUser("ERROR: Response type: " + reply.ResponseType.ToString());
-                }
+                    GoToScene(SceneName.ViewCharacters);
                 break;
             }
             case "AssignBailiff": {
-                lblPageTitle.text = "Assign Bailiff to " + fiefNames[fiefToViewID];
-                listType = ListType.Character;
+                    GoToScene(SceneName.AssignBailiff);
                 break;
             }
             case "SwitchCharacter": {
@@ -122,18 +107,8 @@ public class ViewingList : Controller
 
                     string sex = character.isMale ? "Male" : "Female";
                     label.GetComponent<Text>().text = string.Format("\t{0,-30}{1,-30}{2,-30}{3,-30}", character.charName, sex, character.role, location);
-                    //label.GetComponent<Text>().text = ""
-                    //    + character.charName + "\t\t\t"
-                    //    + sex + "\t\t\t"
-                    //    + character.role + "\t\t\t"
-                    //    + character.locationID
-                    //    ;
-
                     if(viewingListSelectAction.Equals("Entourage") || viewingListSelectAction.Equals("ListChars")) {
                         button.GetComponent<Button>().onClick.AddListener( () => { BtnViewCharacter(character.charID); } );
-                    }
-                    else if(viewingListSelectAction.Equals("AssignBailiff")) {
-                        button.GetComponent<Button>().onClick.AddListener( () => { BtnAppointBailiff(character.charID); } );
                     }
                     else if(viewingListSelectAction.Equals("SwitchCharacter")) {
                         button.GetComponent<Button>().onClick.AddListener( () => { BtnSwitchCharacter(character.charID); } );

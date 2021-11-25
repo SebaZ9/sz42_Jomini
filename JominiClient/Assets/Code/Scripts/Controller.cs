@@ -17,7 +17,7 @@ public class Controller : MonoBehaviour
 
     ////Other value
     public static TextTestClient tclient;
-    public static ProtoFief mf; // current fief player char is in?
+    public static ProtoFief mf;
     public static ProtoGenericArray<ProtoArmyOverview> ma;
     public static ProtoGenericArray<ProtoDetachment> dl;
     public static ProtoPlayerCharacter c;
@@ -31,7 +31,8 @@ public class Controller : MonoBehaviour
     public static string ipAddress = "192.168.0.16";
 
     public enum SceneName {
-        FiefDetails, LogIn, MainMenu, Map, ViewArmy, ViewCharacter, ViewFief, ViewingList, ViewJournalEntry, ViewArmiesList, ViewMyFiefsList, ChangeCharactersList, ViewJournalEntries
+        FiefDetails, LogIn, MainMenu, Map, ViewArmy, ViewCharacter, ViewFief, ViewingList, ViewJournalEntry, ViewArmiesList, ViewMyFiefsList, ChangeCharactersList, ViewJournalEntries,
+        AssignBailiff, ViewCharacters, ArmiesInFief
     }
 //
     public static ProtoClient protoClient;
@@ -196,6 +197,7 @@ public class Controller : MonoBehaviour
             Message = fiefID,
             MessageFields = new string[] { charID }
         };
+        Debug.Log("Try assign bailiff with character: " + request.MessageFields[0]);
         client.net.Send(request);
         return GetActionReply(Actions.AppointBailiff, client);
     }
@@ -350,14 +352,6 @@ public class Controller : MonoBehaviour
         return (ProtoGenericArray<ProtoFief>)GetActionReply(Actions.ViewMyFiefs, tclient);
     }
 
-
-
-
-
-
-
-
-
     public static ProtoMessage RemoveBailiff(string fiefID, TextTestClient client)
     {
         ProtoMessage request = new ProtoMessage {
@@ -441,7 +435,7 @@ public class Controller : MonoBehaviour
     /// <param name="client"></param>
     /// <returns></returns>
 
-    public static ProtoMessage MaintainArmy(string armyID, TextTestClient client)
+    public static ProtoMessage MaintainArmy(string armyID, TextTestClient client)                                   // Complete
     {
        // ProtoPlayerCharacter armyResult = GetArmyID(client);
         ProtoMessage protoMessage = new ProtoMessage();
@@ -463,17 +457,17 @@ public class Controller : MonoBehaviour
         return reply;
     }
 
-    public static ProtoGenericArray<ProtoDetachment> ListDetachments(TextTestClient client)
+    public static ProtoGenericArray<ProtoDetachment> ListDetachments(string army, TextTestClient client)            // Complete
     {
         ProtoMessage protoMessage = new ProtoMessage();
         protoMessage.ActionType = Actions.ListDetachments;
-        protoMessage.Message = "Char_158";
+        protoMessage.Message = army;
         client.net.Send(protoMessage);
         var reply = GetActionReply(Actions.ListDetachments, client);
         var Detachments = (ProtoGenericArray<ProtoDetachment>)reply;
         return Detachments;
     }
-    public static ProtoMessage DropOffTroops(uint[] Troops, TextTestClient client)
+    public static ProtoMessage DropOffTroops(uint[] Troops, TextTestClient client)                                  // Complete
     {
         ProtoCharacter armyResult = GetCharacterDetails("Char_158", client);
         ProtoDetachment protoDetachment = new ProtoDetachment();
@@ -485,7 +479,7 @@ public class Controller : MonoBehaviour
         var reply = GetActionReply(Actions.DropOffTroops, client);
         return reply;
     }
-    public static ProtoMessage PickUpTroops(string armyID, string[] detachmentIDs, TextTestClient client)
+    public static ProtoMessage PickUpTroops(string armyID, string[] detachmentIDs, TextTestClient client)         // 1/2 Complete. Need to do some UI work and fix server crashes
     {
         ProtoCharacter armyResult = GetCharacterDetails("Char_158", client);
         ProtoMessage protoMessage = new ProtoMessage();
@@ -496,7 +490,7 @@ public class Controller : MonoBehaviour
         var reply = GetActionReply(Actions.PickUpTroops, client);
         return reply;
     }
-    public static ProtoMessage HireTroops(int amount, TextTestClient client)
+    public static ProtoMessage HireTroops(int amount, TextTestClient client)                                    // Complete. Need to do some error handling
     {
         ProtoCharacter armyResult = GetCharacterDetails("Char_158",client);
         ProtoRecruit protoRecruit = new ProtoRecruit();
@@ -512,7 +506,7 @@ public class Controller : MonoBehaviour
         return reply;
     }
 
-    public static ProtoMessage PillageFief(TextTestClient client)
+    public static ProtoMessage PillageFief(TextTestClient client)                                           // Complete
     {
         ProtoCharacter armyResult = GetCharacterDetails("Char_158",client);
         ProtoMessage protoMessage = new ProtoMessage();
@@ -523,7 +517,7 @@ public class Controller : MonoBehaviour
         var reply = GetActionReply(Actions.PillageFief, client);
         return reply;
     }
-    public static ProtoMessage DisbandArmy(string armyID, TextTestClient client)
+    public static ProtoMessage DisbandArmy(string armyID, TextTestClient client)                            // Complete
     {
         ProtoMessage protoMessage = new ProtoMessage();
         protoMessage.ActionType = Actions.DisbandArmy;
@@ -598,25 +592,19 @@ public class Controller : MonoBehaviour
         protoSiegeStart.Message = locResult.armyID;
         client.net.Send(protoSiegeStart);
         var reply = GetActionReply(Actions.BesiegeFief, client);
-        if (reply.GetType() == typeof(ProtoSiegeDisplay))
-        {
-            return reply as ProtoSiegeDisplay;
-        }
-        else
-        {
-            return reply;
-        }
+        return reply;
     }
     public static ProtoMessage ViewSiege(string siegeID, TextTestClient client)
     {
-       
+
         ProtoMessage ViewSiege = new ProtoMessage();
-        ViewSiege.ActionType = Actions.SiegeList;
+        ViewSiege.ActionType = Actions.ViewSiege;
         ViewSiege.Message = siegeID;
         client.net.Send(ViewSiege);
-        var reply = GetActionReply(Actions.SiegeList, client);
+        var reply = GetActionReply(Actions.ViewSiege, client);
         return reply;
     }
+
     public static ProtoSiegeDisplay SiegeRoundStorm(string siegeID, TextTestClient client)
     {
        
@@ -663,7 +651,7 @@ public class Controller : MonoBehaviour
     /// <param name="fiefID"></param>
     /// <param name="client"></param>
     /// <returns></returns>
-    public static ProtoMessage SpyFief(string fiefID, string charID, TextTestClient client)
+    public static ProtoMessage SpyFief(string fiefID, string charID, TextTestClient client)                           // Complete
     {
         ProtoMessage protoMessage = new ProtoMessage();
         protoMessage.ActionType = Actions.SpyFief;

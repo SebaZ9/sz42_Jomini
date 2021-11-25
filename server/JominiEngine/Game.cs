@@ -1666,9 +1666,11 @@ namespace JominiEngine {
             // Character to become bailiff
             var c = Utility_Methods.GetCharacter(charID, out charErr);
             if (c == null) {
+                Console.WriteLine($"Cant get character |{charID}| during appoint bailiff!");
                 return new ProtoMessage(charErr);
             }
             if (f == null) {
+                Console.WriteLine("Cant get fief during appoint bailiff!");
                 return new ProtoMessage(fiefErr);
             }
 
@@ -2725,6 +2727,11 @@ namespace JominiEngine {
             }
             // get fief
             Fief fief = null;
+            foreach(Army army1 in Globals_Game.armyMasterList.Values)
+            {
+                Console.WriteLine($"{army1.armyID} is in : {army1.location}");
+            }
+            
             Globals_Game.fiefMasterList.TryGetValue(fiefID, out fief);
             if (fief == null) {
                 var error = new ProtoMessage();
@@ -3109,6 +3116,7 @@ namespace JominiEngine {
         /// <returns>The result of attempting to process the client's request, ranging from the result of an action to an error message</returns>
         public static ProtoMessage ActionController(ProtoMessage msgIn, Client _client) {
             Contract.Requires(msgIn != null && _client != null);
+            Console.WriteLine("Days Left To Use: " + _client.activeChar.days);
             switch (msgIn.ActionType) {
                 // Switch to using another character (performing actions with NPC
                 case Actions.UseChar: {
@@ -3179,10 +3187,11 @@ namespace JominiEngine {
                     }
                 // Appoint a character as a bailiff to a fief
                 case Actions.AppointBailiff: {
-                        if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
+                        if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {                            
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
-                        return AppointBailiff(msgIn.Message, msgIn.MessageFields[0], _client);
+                        Console.WriteLine($"Recieve appoint bailiff: {msgIn.MessageFields.Length} || {msgIn.MessageFields[0]}");
+                        return AppointBailiff(msgIn.Message, msgIn.MessageFields[1], _client);
                     }
                 // Remove bailiff from fief
                 case Actions.RemoveBailiff: {
@@ -3259,7 +3268,8 @@ namespace JominiEngine {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
-                        return ListCharsInMeetingPlace(msgIn.Message, msgIn.MessageFields[0], _client);
+                        Console.WriteLine($"Chars in {msgIn.MessageFields[1]} : {msgIn.Message}");
+                        return ListCharsInMeetingPlace(msgIn.Message, msgIn.MessageFields[1], _client);
                     }
                 // Instruct a character to camp where they are for a number of days
                 case Actions.Camp: {
@@ -3434,7 +3444,7 @@ namespace JominiEngine {
                         }
                         Console.WriteLine(msgIn.MessageFields.Length);
                         Console.WriteLine(msgIn.MessageFields[0]);
-                        return SpyFief(msgIn.Message, msgIn.MessageFields[0], _client);
+                        return SpyFief(msgIn.Message, msgIn.MessageFields[1], _client);
                     }
                 case Actions.Kidnap: {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {

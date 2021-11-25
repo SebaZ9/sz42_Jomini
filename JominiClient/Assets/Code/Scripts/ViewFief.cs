@@ -33,11 +33,18 @@ public class ViewFief : Controller
 
     [SerializeField] private Dropdown ddMeetingPlaceType;
 
+    public Transform PillageResultOutput;
+    public GameObject PillagePanel;
+    public Button btnPillageFief;
+    public Button btnSpyFief;
+    public Button btnSiegeFief;
+
     private ProtoFief currentlyViewedFief;
 
     // Start is called before the first frame update
     public void Start()
     {
+        PillagePanel.SetActive(false);
         btnAdjustExpenditure.onClick.AddListener(BtnAdjustExpenditure);
         //btnAutoAdjustExpenditure.onClick.AddListener(BtnAutoAdjustExpenditures);
         btnAppointBailiff.onClick.AddListener(BtnViewPossibleBailiffs);
@@ -46,6 +53,8 @@ public class ViewFief : Controller
         btnListCharsInMeetingPlace.onClick.AddListener(BtnListCharsInMeetingPlace);
         btnTransferFunds.onClick.AddListener(BtnTransferFunds);
         btnTravelTo.onClick.AddListener(BtnTravelTo);
+        btnSpyFief.onClick.AddListener(BtnSpyOnFief);
+        btnSiegeFief.onClick.AddListener(BtnSiegeFief);
         lblMessageForUser.text = "";
         btnAdjustExpenditure.interactable = false;
         btnAppointBailiff.interactable = false;
@@ -89,8 +98,11 @@ public class ViewFief : Controller
             btnAdjustExpenditure.interactable = true;
             txtTransferFunds.interactable = true;
             btnTransferFunds.interactable = true;
+            btnPillageFief.gameObject.SetActive(false);
+            btnSpyFief.gameObject.SetActive(false);
+            btnSiegeFief.gameObject.SetActive(false);
 
-            if(currentlyViewedFief.bailiff == null) {
+            if (currentlyViewedFief.bailiff == null) {
                 btnAppointBailiff.interactable = true;
             }
             else {
@@ -116,6 +128,86 @@ public class ViewFief : Controller
         }
 
         //lblDetails2.text += "\n" + protoClient.activeChar.days.ToString();
+    }
+
+    private void BtnSiegeFief()
+    {
+        ProtoMessage reply = SiegeCurrentFief(tclient);
+
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericMessageInvalid:
+                {
+                    break;
+                }
+            case DisplayMessages.ErrorGenericArmyUnidentified:
+                {
+                    break;
+                }
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    break;
+                }
+            case DisplayMessages.Success:
+                {
+                    ProtoSiegeDisplay siege = (ProtoSiegeDisplay)reply;
+                    break;
+                }
+        }
+
+    }
+
+
+    private void BtnSpyOnFief()
+    {
+        ProtoMessage reply = SpyFief(currentlyViewedFief.fiefID, protoClient.activeChar.charID, tclient);
+
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericMessageInvalid:
+                {
+                    DisplayMessageToUser("ErrorGenericMessageInvalid!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("ErrorGenericUnauthorised!");
+                    break;
+                }
+            case DisplayMessages.SpySuccessDetected:    // Successful but detected
+                {
+                    DisplayMessageToUser("SpySuccessDetected!");
+                    break;
+                }
+            case DisplayMessages.SpySuccess:            // Successful not detected
+                {
+                    DisplayMessageToUser("SpySuccess!");
+                    break;
+                }
+            case DisplayMessages.SpyFailDead:           // Not successful and spy died
+                {
+                    DisplayMessageToUser("SpyFailDead!");
+                    break;
+                }
+            case DisplayMessages.SpyFailDetected:       // Not successful and detected
+                {
+                    DisplayMessageToUser("SpyFailDetected!");
+                    break;
+                }
+            case DisplayMessages.SpyFail:                // Not successful but not detected
+                {
+                    DisplayMessageToUser("SpyFail!");
+                    break;
+                }
+            default:
+                {
+                    DisplayMessageToUser("ErrorGenericMessageInvalid!");
+                    break;
+                }
+
+
+        }
+
     }
 
     private void BtnAdjustExpenditure() {
@@ -281,6 +373,62 @@ public class ViewFief : Controller
     void Update()
     {
         
+    }
+
+    public void PillageFief()
+    {
+        ProtoMessage reply = PillageFief(tclient);
+
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericMessageInvalid:
+                {
+                    DisplayMessageToUser("ErrorGenericMessageInvalid!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericArmyUnidentified:
+                {
+                    DisplayMessageToUser("ErrorGenericArmyUnidentified!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("ErrorGenericUnauthorised!");
+                    break;
+                }
+            case DisplayMessages.Success:
+                {
+                    ProtoPillageResult result = (ProtoPillageResult)reply;
+                    Debug.Log(result.treasuryLoss);
+                    PillageResultOutput.GetChild(0).GetComponent<TMPro.TMP_Text>().SetText(result.fiefID);
+                    PillageResultOutput.GetChild(1).GetComponent<TMPro.TMP_Text>().SetText(result.fiefName);
+                    PillageResultOutput.GetChild(2).GetComponent<TMPro.TMP_Text>().SetText(result.isPillage.ToString());
+                    PillageResultOutput.GetChild(3).GetComponent<TMPro.TMP_Text>().SetText(result.fiefOwner);
+                    PillageResultOutput.GetChild(4).GetComponent<TMPro.TMP_Text>().SetText(result.defenderLeader);
+                    PillageResultOutput.GetChild(5).GetComponent<TMPro.TMP_Text>().SetText(result.armyOwner);
+                    PillageResultOutput.GetChild(6).GetComponent<TMPro.TMP_Text>().SetText(result.armyLeader);
+                    PillageResultOutput.GetChild(7).GetComponent<TMPro.TMP_Text>().SetText(result.daysTaken.ToString());
+                    PillageResultOutput.GetChild(8).GetComponent<TMPro.TMP_Text>().SetText(result.populationLoss.ToString());
+                    PillageResultOutput.GetChild(9).GetComponent<TMPro.TMP_Text>().SetText(result.treasuryLoss.ToString());
+                    PillageResultOutput.GetChild(10).GetComponent<TMPro.TMP_Text>().SetText(result.industryLoss.ToString());
+                    PillageResultOutput.GetChild(11).GetComponent<TMPro.TMP_Text>().SetText(result.loyaltyLoss.ToString());
+                    PillageResultOutput.GetChild(12).GetComponent<TMPro.TMP_Text>().SetText(result.fieldsLoss.ToString());
+                    PillageResultOutput.GetChild(13).GetComponent<TMPro.TMP_Text>().SetText(result.baseMoneyPillaged.ToString());
+                    PillageResultOutput.GetChild(14).GetComponent<TMPro.TMP_Text>().SetText(result.bonusMoneyPillaged.ToString());
+                    PillageResultOutput.GetChild(15).GetComponent<TMPro.TMP_Text>().SetText(result.moneyPillagedOwner.ToString());
+                    PillageResultOutput.GetChild(16).GetComponent<TMPro.TMP_Text>().SetText(result.jackpot.ToString());
+                    PillageResultOutput.GetChild(17).GetComponent<TMPro.TMP_Text>().SetText(result.statureModifier.ToString());
+                    DisplayMessageToUser("Success!");
+                    PillagePanel.SetActive(true);
+                    break;
+                }
+            default:
+                {
+                    DisplayMessageToUser("default!");
+                    break;
+                }
+        }
+
     }
 
     void DisplayMessageToUser(string message) {

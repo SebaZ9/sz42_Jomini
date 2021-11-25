@@ -325,6 +325,7 @@ namespace JominiEngine
             if (!pillageCancelled)
             {
                 // process pillage
+                Console.WriteLine("Processing pillage!");
                 return Pillage_Siege.ProcessPillage(f, a);
             }
             result.ResponseType = DisplayMessages.Success;

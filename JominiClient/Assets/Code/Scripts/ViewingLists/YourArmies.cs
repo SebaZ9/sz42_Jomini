@@ -1,4 +1,5 @@
 using ProtoMessageClient;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,9 +11,15 @@ public class YourArmies : Controller
     public Transform CanvasParent;
     public GameObject prefab;
 
+    public Button btnHireTroops;
+    public TMPro.TMP_InputField TroopAmount;
+    public Text lblMessageForUser;
+
     // Start is called before the first frame update
     void Start()
     {
+
+        btnHireTroops.onClick.AddListener(BtnHireTroops);
 
         ProtoMessage reply = ListArmies(tclient);
         if (reply.ResponseType == DisplayMessages.Success) {
@@ -41,6 +48,60 @@ public class YourArmies : Controller
         }
 
 
+    }
+
+    private void BtnHireTroops()
+    {
+        ProtoMessage reply = HireTroops(int.Parse(TroopAmount.text), tclient);
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericMessageInvalid:
+                {
+                    DisplayMessageToUser("ErrorGenericMessageInvalid!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericArmyUnidentified:
+                {
+                    DisplayMessageToUser("ErrorGenericArmyUnidentified!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("ErrorGenericUnauthorised!");
+                    break;
+                }
+            case DisplayMessages.ErrorGenericPoorOrganisation:
+                {
+                    DisplayMessageToUser("ErrorGenericPoorOrganisation!");
+                    break;
+                }
+            case DisplayMessages.CharacterRecruitInsufficientFunds:
+                {
+                    DisplayMessageToUser("CharacterRecruitInsufficientFunds!");
+                    break;
+                }
+            case DisplayMessages.CharacterRecruitOk:
+                {
+                    DisplayMessageToUser("CharacterRecruitOk!");
+                    break;
+                }
+            case DisplayMessages.Success:
+                {
+                    GoToScene(SceneName.ViewArmiesList);
+                    DisplayMessageToUser("Success!");
+                    break;
+                }
+            default:
+                {
+                    DisplayMessageToUser("default!");
+                    break;
+                }
+        }
+    }
+
+    private void DisplayMessageToUser(string message)
+    {
+        lblMessageForUser.text = "[" + DateTime.Now.ToString("h:mm:ss tt") + "] " + message;
     }
 
     private void BtnViewArmy(string armyID) {

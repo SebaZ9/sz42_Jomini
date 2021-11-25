@@ -4448,16 +4448,16 @@ namespace JominiEngine
             result = new ProtoMessage();
             // TOOD Move to config
             // Threshold under which this character will be detected
-            double detectedThreshold = 40;
+            double detectedThreshold = 10;
             // Threshold under which this character will be killed //TODO add capture
-            double killThreshold = 30;
+            double killThreshold = 5;
 
             // Get random success and escape chances 
             double successChance = Utility_Methods.GetRandomDouble(85, 15);
             double escapeChance = Utility_Methods.GetRandomDouble(75, 25);
 
             // Calculate total chance of success
-            double success = GetSpySuccessChance(fief);
+            double success = 100;//GetSpySuccessChance(fief);
             // Check for success
             if (success > successChance) {
                 isSuccessful = true;

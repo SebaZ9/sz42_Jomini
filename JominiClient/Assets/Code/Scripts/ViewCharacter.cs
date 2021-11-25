@@ -17,6 +17,8 @@ public class ViewCharacter : Controller
     [SerializeField] private Text lblCharInfo;
     [SerializeField] private Text lblMessageForUser;
 
+    public Button btnUseCharacter;
+
     [SerializeField] private InputField txtOffer;
 
     private ProtoCharacter currentlyViewedCharacter;
@@ -30,6 +32,7 @@ public class ViewCharacter : Controller
         btnFireNPC.onClick.AddListener(BtnFireNPC);
         btnAddToEntourage.onClick.AddListener(BtnAddToEntourage);
         btnRemoveFromEntourage.onClick.AddListener(BtnRemoveFromEntourage);
+        btnUseCharacter.onClick.AddListener(BtnUseCharacter);
         
         lblMessageForUser.text = "";
         txtOffer.interactable = false;
@@ -85,6 +88,26 @@ public class ViewCharacter : Controller
         if(string.IsNullOrWhiteSpace(currentlyViewedCharacter.armyID)) {
             btnViewArmy.interactable = false;
         }
+    }
+
+    private void BtnUseCharacter()
+    {
+        ProtoMessage reply = UseChar(currentlyViewedCharacter.charID, tclient);
+
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("ErrorGenericUnauthorised!");
+                    break;                
+                }
+            case DisplayMessages.Success:
+                {
+                    DisplayMessageToUser("Successfully changed character!");
+                    break;
+                }
+        }
+
     }
 
     void DisplayMessageToUser(string message) {

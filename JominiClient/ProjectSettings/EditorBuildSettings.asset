@@ -44,4 +44,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ViewingLists/ViewJournalEntries.unity
     guid: 8938bdcaeb59a56408c8c33cbbd215f6
+  - enabled: 1
+    path: Assets/Scenes/ViewingLists/AssignBailiff.unity
+    guid: 3c8bfdd1785e81042ad658c7fe166cd7
+  - enabled: 1
+    path: Assets/Scenes/ViewingLists/ViewCharacters.unity
+    guid: f76b4a6ba7cf4e0438703004ea405cf1
+  - enabled: 1
+    path: Assets/Scenes/ViewingLists/ArmiesInFief.unity
+    guid: ebfa824ec2c2144419271930a430bcae
   m_configObjects: {}
