@@ -33,39 +33,40 @@ namespace ProtoMessageClient {
     /// </summary>
     // Subtypes need to be declared in order for serialization to work
     [ProtoInclude(5, typeof(ProtoLogIn))]
-        [ProtoInclude(6, typeof(ProtoPlayer))]
-        [ProtoInclude(7, typeof(ProtoClient))]
-        [ProtoInclude(8, typeof(ProtoGenericArray<ProtoPlayer>))]
-        [ProtoInclude(9, typeof(ProtoGenericArray<ProtoFief>))]
-        [ProtoInclude(10, typeof(ProtoGenericArray<string>))]
-        [ProtoInclude(11, typeof(ProtoGenericArray<double>))]
-        [ProtoInclude(12, typeof(ProtoGenericArray<ProtoCharacterOverview>))]
-        [ProtoInclude(13, typeof(ProtoGenericArray<ProtoDetachment>))]
-        [ProtoInclude(14, typeof(ProtoGenericArray<ProtoSiegeOverview>))]
-        [ProtoInclude(15, typeof(ProtoGenericArray<ProtoArmyOverview>))]
-        [ProtoInclude(16, typeof(ProtoGenericArray<ProtoJournalEntry>))]
-        [ProtoInclude(17, typeof(ProtoAilment))]
-        [ProtoInclude(18, typeof(ProtoArmy))]
-        [ProtoInclude(19, typeof(ProtoCharacter))]
-        [ProtoInclude(20, typeof(ProtoFief))]
-        [ProtoInclude(21, typeof(ProtoArmyOverview))]
-        [ProtoInclude(22, typeof(ProtoCharacterOverview))]
-        [ProtoInclude(23, typeof(ProtoPillageResult))]
-        [ProtoInclude(24, typeof(ProtoSiegeOverview))]
-        [ProtoInclude(25, typeof(ProtoSiegeDisplay))]
-        [ProtoInclude(26, typeof(ProtoBattle))]
-        [ProtoInclude(27, typeof(ProtoJournalEntry))]
-        [ProtoInclude(28, typeof(ProtoJournal))]
-        [ProtoInclude(29, typeof(ProtoDetachment))]
-        [ProtoInclude(30, typeof(ProtoTransfer))]
-        [ProtoInclude(31, typeof(ProtoTransferPlayer))]
-        [ProtoInclude(32, typeof(ProtoTravelTo))]
-        [ProtoInclude(33, typeof(ProtoRecruit))]
-        [ProtoInclude(34, typeof(ProtoCombatValues))]
-        [ProtoInclude(37, typeof(ProtoWorldMap))]
+    [ProtoInclude(6, typeof(ProtoPlayer))]
+    [ProtoInclude(7, typeof(ProtoClient))]
+    [ProtoInclude(8, typeof(ProtoGenericArray<ProtoPlayer>))]
+    [ProtoInclude(9, typeof(ProtoGenericArray<ProtoFief>))]
+    [ProtoInclude(10, typeof(ProtoGenericArray<string>))]
+    [ProtoInclude(11, typeof(ProtoGenericArray<double>))]
+    [ProtoInclude(12, typeof(ProtoGenericArray<ProtoCharacterOverview>))]
+    [ProtoInclude(13, typeof(ProtoGenericArray<ProtoDetachment>))]
+    [ProtoInclude(14, typeof(ProtoGenericArray<ProtoSiegeOverview>))]
+    [ProtoInclude(15, typeof(ProtoGenericArray<ProtoArmyOverview>))]
+    [ProtoInclude(16, typeof(ProtoGenericArray<ProtoJournalEntry>))]
+    [ProtoInclude(17, typeof(ProtoAilment))]
+    [ProtoInclude(18, typeof(ProtoArmy))]
+    [ProtoInclude(19, typeof(ProtoCharacter))]
+    [ProtoInclude(20, typeof(ProtoFief))]
+    [ProtoInclude(21, typeof(ProtoArmyOverview))]
+    [ProtoInclude(22, typeof(ProtoCharacterOverview))]
+    [ProtoInclude(23, typeof(ProtoPillageResult))]
+    [ProtoInclude(24, typeof(ProtoSiegeOverview))]
+    [ProtoInclude(25, typeof(ProtoSiegeDisplay))]
+    [ProtoInclude(26, typeof(ProtoBattle))]
+    [ProtoInclude(27, typeof(ProtoJournalEntry))]
+    [ProtoInclude(28, typeof(ProtoJournal))]
+    [ProtoInclude(29, typeof(ProtoDetachment))]
+    [ProtoInclude(30, typeof(ProtoTransfer))]
+    [ProtoInclude(31, typeof(ProtoTransferPlayer))]
+    [ProtoInclude(32, typeof(ProtoTravelTo))]
+    [ProtoInclude(33, typeof(ProtoRecruit))]
+    [ProtoInclude(34, typeof(ProtoCombatValues))]
+    [ProtoInclude(37, typeof(ProtoWorldMap))]
+    [ProtoInclude(38, typeof(ProtoProvince))]
 
 
-        [ProtoContract, Serializable]
+    [ProtoContract, Serializable]
         public class ProtoMessage {
             /// <summary>
             /// Contains the underlying type of the message. Used identify which action the client took
@@ -1773,38 +1774,78 @@ namespace ProtoMessageClient {
         }
 
         [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
-        public class ProtoWorldMap : ProtoMessage {
-            public int dimensionY;
-            public int dimensionX;
-            public string[] gameMapLayout;
-            public string[] fiefIDNames;
+    public class ProtoWorldMap : ProtoMessage
+    {
+        public int dimensionY;
+        public int dimensionX;
+        public string[] gameMapLayout;
+        public string[] fiefIDNames;
+        public string[] provinceID;
+        public string[] provinceName;
+        public string[] provinceOwner;
 
-            public ProtoWorldMap() {
+        public ProtoWorldMap()
+        {
 
-            }
-
-            public ProtoWorldMap(string[,] gameMapLayout, Dictionary<string, Fief> fiefMaster) {
-                this.gameMapLayout = new string[gameMapLayout.Length];
-                dimensionY = gameMapLayout.GetLength(0);
-                dimensionX = gameMapLayout.GetLength(1);
-                int i = 0;
-                for (int y = 0; y < dimensionY; y++) {
-                    for (int x = 0; x < dimensionX; x++) {
-                        this.gameMapLayout[i] = gameMapLayout[y, x];
-                        i++;
-                    }
-                }
-
-                this.fiefIDNames = new string[fiefMaster.Count * 3];
-                i = 0;
-                foreach (var fief in fiefMaster.Values) {
-                    this.fiefIDNames[i] = fief.id;
-                    this.fiefIDNames[i + 1] = fief.name;
-                    //this.fiefIDNames[i+2] = fief.owner.firstName + " " + fief.owner.familyName;
-                    this.fiefIDNames[i + 2] = fief.owner.charID;
-                    i += 3;
-                }
-            }
         }
 
+        public ProtoWorldMap(string[,] gameMapLayout, Dictionary<string, Fief> fiefMaster)
+        {
+            this.gameMapLayout = new string[gameMapLayout.Length];
+            dimensionY = gameMapLayout.GetLength(0);
+            dimensionX = gameMapLayout.GetLength(1);
+            int i = 0;
+            for (int y = 0; y < dimensionY; y++)
+            {
+                for (int x = 0; x < dimensionX; x++)
+                {
+                    this.gameMapLayout[i] = gameMapLayout[y, x];
+                    i++;
+                }
+            }
+
+            fiefIDNames = new string[fiefMaster.Count * 3];
+            provinceID = new string[fiefMaster.Count];
+            provinceName = new string[fiefMaster.Count];
+            provinceOwner = new string[fiefMaster.Count];
+            i = 0;
+            foreach (var fief in fiefMaster.Values)
+            {
+                Province p = Globals_Game.provinceMasterList[fief.id];
+                fiefIDNames[i] = fief.id;
+                fiefIDNames[i + 1] = fief.name;
+                fiefIDNames[i + 2] = fief.owner.familyID;
+                provinceID[i/3] = fief.province.id;
+                provinceName[i / 3] = p.name;
+                provinceOwner[i/3] = p.owner.charID;
+                i += 3;
+            }
+        }
     }
+
+    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
+    public class ProtoProvince : ProtoMessage
+    {
+        public string id;
+        public string name;
+        public double taxRate;
+        public string titleHolder;
+        public string ownerID;
+        public string kingdomID;
+        public byte rankID;
+
+
+
+        public ProtoProvince(Province province)
+        {
+            id = province.id;
+            name = province.name;
+            taxRate = province.taxRate;
+            titleHolder = province.titleHolder;
+            ownerID = province.owner.charID;
+            kingdomID = province.kingdom.id;
+            rankID = province.rank.id;
+        }
+    }
+
+}

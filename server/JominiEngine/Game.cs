@@ -2357,7 +2357,16 @@ namespace JominiEngine {
         public static ProtoMessage RecruitTroops(string armyID, uint amount, bool isConfirm, Client client) {
             // Get army to recruit into
             Army army = null;
-            Globals_Game.armyMasterList.TryGetValue(armyID, out army);
+            if (armyID == null)
+            {
+                if (!PermissionManager.isAuthorized(PermissionManager.ownsCharOrAdmin, client.myPlayerCharacter, client.myPlayerCharacter))
+                {
+                    return new ProtoMessage(DisplayMessages.ErrorGenericUnauthorised);
+                }
+                var numTroops2 = amount;
+                return client.myPlayerCharacter.RecruitTroops(numTroops2, army, isConfirm);
+            } 
+                Globals_Game.armyMasterList.TryGetValue(armyID, out army);
             if (army == null || !client.myPlayerCharacter.myArmies.Contains(army)) {
                 return new ProtoMessage(DisplayMessages.ErrorGenericArmyUnidentified);
             }
@@ -2650,8 +2659,43 @@ namespace JominiEngine {
             if (!siege.ChecksBeforeSiegeOperation(out siegeError)) {
                 return siegeError;
             }
+            Console.WriteLine($"--------------------- STORM SIEGE 1 ------------------");
+            Console.WriteLine(siege.siegeID);
+            Console.WriteLine(siege.startYear);
+            Console.WriteLine(siege.startSeason);
+            Console.WriteLine(siege.besiegingPlayer);
+            Console.WriteLine(siege.defendingPlayer);
+            Console.WriteLine(siege.besiegerArmy);
+            Console.WriteLine(siege.defenderGarrison);
+            Console.WriteLine(siege.besiegedFief);
+            Console.WriteLine(siege.days);
+            Console.WriteLine(siege.totalDays);
+            Console.WriteLine(siege.startKeepLevel);
+            Console.WriteLine(siege.GetFief().keepLevel);
+            Console.WriteLine(siege.totalCasualtiesAttacker);
+            Console.WriteLine(siege.totalCasualtiesDefender);
+            Console.WriteLine(siege.defenderAdditional);
+            Console.WriteLine(siege.endDate);
+            Console.WriteLine($"------------------- END STORM SIEG -----------------");
             siege.SiegeReductionRound("storm");
-
+            Console.WriteLine($"--------------------- STORM SIEGE 2 ------------------");
+            Console.WriteLine(siege.siegeID);
+            Console.WriteLine(siege.startYear);
+            Console.WriteLine(siege.startSeason);
+            Console.WriteLine(siege.besiegingPlayer);
+            Console.WriteLine(siege.defendingPlayer);
+            Console.WriteLine(siege.besiegerArmy);
+            Console.WriteLine(siege.defenderGarrison);
+            Console.WriteLine(siege.besiegedFief);
+            Console.WriteLine(siege.days);
+            Console.WriteLine(siege.totalDays);
+            Console.WriteLine(siege.startKeepLevel);
+            Console.WriteLine(siege.GetFief().keepLevel);
+            Console.WriteLine(siege.totalCasualtiesAttacker);
+            Console.WriteLine(siege.totalCasualtiesDefender);
+            Console.WriteLine(siege.defenderAdditional);
+            Console.WriteLine(siege.endDate);
+            Console.WriteLine($"------------------- END STORM SIEG -----------------");
             return new ProtoSiegeDisplay(siege);
         }
 
@@ -2757,6 +2801,25 @@ namespace JominiEngine {
             var armyList = new ProtoGenericArray<ProtoArmyOverview>(armies.ToArray());
             armyList.ResponseType = DisplayMessages.Success;
             return armyList;
+        }
+
+        public static ProtoMessage GetProvince(string pID)
+        {
+            if (Globals_Game.provinceMasterList.ContainsKey(pID))
+            {
+                ProtoMessage province = new ProtoProvince(
+                    Globals_Game.provinceMasterList[pID]
+                    );
+                Console.WriteLine($"province {pID}");
+                province.ResponseType = DisplayMessages.Success;
+                return province;
+            }
+            else
+            {
+                var error = new ProtoMessage();
+                error.ResponseType = DisplayMessages.Error;
+                return error;
+            }
         }
 
         public static ProtoMessage Attack(string attackerID, string defenderID, Client client) {
@@ -3134,7 +3197,7 @@ namespace JominiEngine {
                 case Actions.HireNPC: {
                         // Convert bid to UInt
                         uint bid = 0;
-                        if (msgIn.MessageFields == null || msgIn.MessageFields.Length != 1 || !uint.TryParse(msgIn.MessageFields[0], out bid)) {
+                        if (msgIn.MessageFields == null || msgIn.MessageFields.Length != 2 || !uint.TryParse(msgIn.MessageFields[1], out bid)) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericPositiveInteger);
                         }
                         return HireNPC(msgIn.Message, bid, _client);
@@ -3291,7 +3354,7 @@ namespace JominiEngine {
                     if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
                         return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                     }
-                    return ProposeMarriage(msgIn.Message, msgIn.MessageFields[0], _client);
+                    return ProposeMarriage(msgIn.Message, msgIn.MessageFields[1], _client);
                 // Reply to a proposal (accept or reject)
                 case Actions.AcceptRejectProposal: {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
@@ -3299,7 +3362,7 @@ namespace JominiEngine {
                         }
                         try {
                             return AcceptRejectProposal(Convert.ToUInt32(msgIn.Message),
-                                Convert.ToBoolean(msgIn.MessageFields[0]), _client);
+                                Convert.ToBoolean(msgIn.MessageFields[1]), _client);
                         } catch (Exception e) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
@@ -3329,7 +3392,7 @@ namespace JominiEngine {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
-                        return AppointLeader(msgIn.Message, msgIn.MessageFields[0], _client);
+                        return AppointLeader(msgIn.Message, msgIn.MessageFields[1], _client);
                     }
                 // Drop off troops in fief 
                 case Actions.DropOffTroops: {
@@ -3412,7 +3475,16 @@ namespace JominiEngine {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
-                        return Attack(msgIn.Message, msgIn.MessageFields[0], _client);
+                        return Attack(msgIn.Message, msgIn.MessageFields[1], _client);
+                    }
+                // Get a province
+                case Actions.GetProvince:
+                    {
+                        if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1)
+                        {
+                            return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
+                        }
+                        return GetProvince(msgIn.Message);
                     }
                 // View journal entries
                 case Actions.ViewJournalEntries: {
@@ -3442,8 +3514,6 @@ namespace JominiEngine {
                         if (msgIn.MessageFields == null || msgIn.MessageFields.Length < 1) {
                             return new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
                         }
-                        Console.WriteLine(msgIn.MessageFields.Length);
-                        Console.WriteLine(msgIn.MessageFields[0]);
                         return SpyFief(msgIn.Message, msgIn.MessageFields[1], _client);
                     }
                 case Actions.Kidnap: {

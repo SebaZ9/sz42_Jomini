@@ -1035,12 +1035,13 @@ namespace JominiEngine
                 
                 fields[6] = captiveCharacters;
 
-                   // end the siege
+                // end the siege
                 this.SiegeEnd(true, ResponseType,fields);
 
                 // change fief ownership (ignore errors)
                 ProtoMessage ignore;
                 besiegedFief.ChangeOwnership(attackingPlayer,out ignore);
+
             }
 
             // storm unsuccessful
@@ -1057,12 +1058,12 @@ namespace JominiEngine
                 fields[4] = originalKeepLvl + "";
                 fields[5] = besiegedFief.keepLevel + "";
                 fields[6] = statureChange + "";
+
             }
 
             ProtoMessage round = new ProtoMessage();
             round.ResponseType = ResponseType;
             round.MessageFields = fields;
-            Globals_Game.UpdatePlayer(attackingPlayer.playerID, round);
             // create and send JOURNAL ENTRY
             JournalEntry siegeResult = new JournalEntry(entryID, Globals_Game.clock.currentYear, Globals_Game.clock.currentSeason, siegePersonae, "siegeStorm",round, loc: siegeLocation);
 
@@ -1071,6 +1072,7 @@ namespace JominiEngine
 
             // apply change to besieging player's stature
             this.GetBesiegingPlayer().AdjustStatureModifier(statureChange);
+
 
         }
 
@@ -1362,6 +1364,7 @@ namespace JominiEngine
                 if (type.Equals("storm"))
                 {
                     this.SiegeStormRound(troopsLost, originalKeepLvl);
+
                 }
                 else if (type.Equals("negotiation"))
                 {

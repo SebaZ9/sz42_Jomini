@@ -38,6 +38,7 @@ public class ViewCharacters : Controller
                     UIElement.transform.localScale = Vector3.one;
 
                     UIElement.transform.GetChild(4).GetComponent<Button>().onClick.AddListener(() => { BtnSwitchCharacter(character.charID); });
+                    Debug.Log($"{character.charName} {character.charID}");
 
                 }
             }
@@ -54,14 +55,7 @@ public class ViewCharacters : Controller
 
     private void BtnSwitchCharacter(string charID)
     {
-        ProtoMessage reply = UseChar(charID, tclient);
-        if (reply.ResponseType == DisplayMessages.Success)
-        {
-            characterToViewID = charID;
-            GoToScene(SceneName.ViewCharacter);
-        }
-        else
-        {
-        }
+        characterToViewID = charID;
+        GoToScene(SceneName.ViewCharacter);
     }
 }

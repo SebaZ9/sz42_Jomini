@@ -1,0 +1,21 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "d3e56395-592b-417f-8fc6-9b84aa9a7052": {
+      "ProjectGuid": "d3e56395-592b-417f-8fc6-9b84aa9a7052",
+      "DisplayName": "JominiEngine",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "88287cd4-35b9-412c-be53-2149dea12382": {
+      "ProjectGuid": "88287cd4-35b9-412c-be53-2149dea12382",
+      "DisplayName": "ProtoMessageClient",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

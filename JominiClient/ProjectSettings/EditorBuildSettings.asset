@@ -53,4 +53,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ViewingLists/ArmiesInFief.unity
     guid: ebfa824ec2c2144419271930a430bcae
+  - enabled: 1
+    path: Assets/Scenes/ViewSiege.unity
+    guid: 02e94b4dab0e86341a9e4c55bb38adf5
   m_configObjects: {}

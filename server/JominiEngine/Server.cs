@@ -106,7 +106,7 @@ namespace JominiEngine
             Globals_Server.server = server;
             Globals_Server.logEvent("Server started- host: " + host_name + ", port: " + port + ", appID: " +
                                     app_identifier + ", max connections: " + max_connections);
-            Client client = new Client("helen", "Char_158");
+            Client client = new Client("helen", "Char_47");
             Globals_Server.Clients.Add("helen", client);
             Client client2 = new Client("test", "Char_126");
             Globals_Server.Clients.Add("test", client2);
@@ -116,7 +116,7 @@ namespace JominiEngine
             if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
             {
                 path = Path.Combine(dir, "Certificates");
-            }
+            }   
             else
             {
                 dir = Directory.GetParent(dir).FullName;

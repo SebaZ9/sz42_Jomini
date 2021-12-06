@@ -24,6 +24,10 @@ public class ViewCharacter : Controller
     private ProtoCharacter currentlyViewedCharacter;
     private string fullName;
 
+    public Button btnPropose;
+    public Button btnTryForChild;
+    public Button btnAcceptProposal;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -44,18 +48,36 @@ public class ViewCharacter : Controller
 
         ProtoMessage reply = GetCharacterDetails(characterToViewID, tclient);
         if(reply.ResponseType == DisplayMessages.Success) {
+            Debug.Log($"Check character");
             currentlyViewedCharacter = (ProtoCharacter)reply;
-            Debug.Log($"Character: {currentlyViewedCharacter.isAlive} | {currentlyViewedCharacter.isMale} | {currentlyViewedCharacter.birthSeason}");
             fullName = currentlyViewedCharacter.firstName + " " + currentlyViewedCharacter.familyName;
             DisplayCharacterDetails();
-
-            if(!string.IsNullOrWhiteSpace(currentlyViewedCharacter.armyID)) { // Viewed char is leading an army.
+            btnPropose.gameObject.SetActive(false);
+            btnTryForChild.gameObject.SetActive(false);
+            btnAcceptProposal.gameObject.SetActive(false);
+            if (!string.IsNullOrWhiteSpace(currentlyViewedCharacter.armyID)) { // Viewed char is leading an army.
                 btnViewArmy.interactable = true;
             }
             if(currentlyViewedCharacter is ProtoNPC) {
                 var temp = currentlyViewedCharacter as ProtoNPC;
 
-                if(temp.employer != null) {
+                Debug.Log($"Spose: {protoClient.activeChar.spouse}");
+                Debug.Log($"Fiancee: {protoClient.activeChar.fiancee}");
+                if (!string.IsNullOrEmpty(protoClient.activeChar.fiancee))
+                {
+                    // Propose
+                    btnAcceptProposal.gameObject.SetActive(true);
+
+                }
+                else if (!string.IsNullOrEmpty(protoClient.activeChar.spouse))
+                {
+                    btnTryForChild.gameObject.SetActive(true);
+                    // Try for child
+                } else
+                {
+
+                }
+                if (temp.employer != null) {
                     if(temp.employer.charID.Equals(protoClient.playerChar.charID)) { // This NPC is employed by you.
                         btnFireNPC.interactable = true; // Can only fire NPCs you employ.
 
@@ -65,11 +87,14 @@ public class ViewCharacter : Controller
                         else if(temp.location.Equals(protoClient.playerChar.location)) { // Not in entourage but is in same place as playerchar.
                             btnAddToEntourage.interactable = true;
                         }
+                        
                     }
                     else { // Can try to poach NPCs hired by other players (not 100% sure this is true).
                         txtOffer.interactable = true;
                         btnHireNPC.interactable = true;
                     }
+                    
+                    //if(!temp.isMale && protoClient.activeChar.)
                 }
                 else { // Can hire NPCs who aren't employed.
                     txtOffer.interactable = true;
@@ -198,6 +223,47 @@ public class ViewCharacter : Controller
         armyToViewID = currentlyViewedCharacter.armyID;
         GoToScene(SceneName.ViewArmy);
     }
+
+    public void BtnPropose()
+    {
+
+    }
+
+    public void BtnTryForChild()
+    {
+        ProtoMessage protoMessage = TryForChild(currentlyViewedCharacter.charID, tclient);
+        Debug.Log($"Rreply: {protoMessage.Message} {protoMessage.ResponseType}");
+        switch (protoMessage.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("Error, Unauthorised");
+                    break;
+                }
+            case DisplayMessages.CharacterSpouseNotPregnant:
+                {
+                    DisplayMessageToUser("Spouse not Pregnant");
+                    break;
+                }
+            case DisplayMessages.CharacterSpouseNeverPregnant:
+                    DisplayMessageToUser("Spouse is unable to have a child");
+                {
+                    break;
+                }
+            case DisplayMessages.CharacterSpousePregnant:
+                {
+                    DisplayMessageToUser("Spouse is pregnant");
+                    break;
+                }
+        }
+    }
+
+
+    public void BtnAcceptProposal()
+    {
+
+    }
+
 
     private void DisplayCharacterDetails() {
         lblPageTitle.text = currentlyViewedCharacter.firstName + " " + currentlyViewedCharacter.familyName;

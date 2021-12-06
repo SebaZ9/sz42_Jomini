@@ -38,6 +38,7 @@ public class ViewFief : Controller
     public Button btnPillageFief;
     public Button btnSpyFief;
     public Button btnSiegeFief;
+    public Button btnViewSiege;
 
     private ProtoFief currentlyViewedFief;
 
@@ -55,6 +56,7 @@ public class ViewFief : Controller
         btnTravelTo.onClick.AddListener(BtnTravelTo);
         btnSpyFief.onClick.AddListener(BtnSpyOnFief);
         btnSiegeFief.onClick.AddListener(BtnSiegeFief);
+        btnViewSiege.onClick.AddListener(BtnViewSiege);
         lblMessageForUser.text = "";
         btnAdjustExpenditure.interactable = false;
         btnAppointBailiff.interactable = false;
@@ -71,7 +73,6 @@ public class ViewFief : Controller
         txtTransferFunds.interactable = false;
 
         ddMeetingPlaceType.interactable = false;
-
 
         ProtoMessage reply = GetFiefDetails(fiefToViewID, tclient);
         if(reply.ResponseType == DisplayMessages.Success) {
@@ -128,6 +129,21 @@ public class ViewFief : Controller
         }
 
         //lblDetails2.text += "\n" + protoClient.activeChar.days.ToString();
+
+        if(currentlyViewedFief.siege == "" || currentlyViewedFief.siege == null)
+        {
+            Debug.Log($"No Active Siege");
+            btnSiegeFief.gameObject.SetActive(true);
+            btnViewSiege.gameObject.SetActive(false);
+            if(currentlyViewedFief.ownerID.Equals(protoClient.playerChar.charID)) btnSiegeFief.gameObject.SetActive(false);
+        } else
+        {
+            Debug.Log($"Active Siege");
+            btnViewSiege.gameObject.SetActive(true);
+            btnSiegeFief.gameObject.SetActive(false);
+        }
+
+        
     }
 
     private void BtnSiegeFief()
@@ -151,10 +167,17 @@ public class ViewFief : Controller
             case DisplayMessages.Success:
                 {
                     ProtoSiegeDisplay siege = (ProtoSiegeDisplay)reply;
+                    Debug.Log($"Start siege on fief {currentlyViewedFief.fiefID}");
+                    GoToScene(SceneName.ViewSiege);
                     break;
                 }
         }
 
+    }
+
+    private void BtnViewSiege()
+    {
+        GoToScene(SceneName.ViewSiege);
     }
 
 
@@ -175,13 +198,12 @@ public class ViewFief : Controller
                     break;
                 }
             case DisplayMessages.SpySuccessDetected:    // Successful but detected
-                {
-                    DisplayMessageToUser("SpySuccessDetected!");
-                    break;
-                }
             case DisplayMessages.SpySuccess:            // Successful not detected
                 {
                     DisplayMessageToUser("SpySuccess!");
+                    ProtoFief spyResult = (ProtoFief)reply;
+                    currentlyViewedFief = spyResult;
+                    DisplayFiefDetails();
                     break;
                 }
             case DisplayMessages.SpyFailDead:           // Not successful and spy died
@@ -330,16 +352,6 @@ public class ViewFief : Controller
         string fullName = protoClient.activeChar.firstName + " " + protoClient.activeChar.familyName;
         ProtoMessage reply = TravelTo(protoClient.activeChar.charID, fiefToViewID, tclient);
         if(reply.ResponseType == DisplayMessages.Success) {
-            //string message = protoClient.activeChar.firstName + " " + protoClient.activeChar.familyName;
-            //if(!string.IsNullOrWhiteSpace(protoClient.activeChar.armyID)) {
-            //    message += " and his army have";
-            //}
-            //else {
-            //    message += " has";
-            //}
-            //message += " arrived in " + fiefNames[fiefToViewID] + ".";
-
-            //DisplayMessageToUser(message);
             userMessageOnSceneLoad = fullName + " has arrived in " + fiefNames[fiefToViewID];
             GoToScene(SceneName.ViewFief);
         }
@@ -436,6 +448,7 @@ public class ViewFief : Controller
     }
 
     void DisplayFiefDetails() {
+        Debug.Log($"Update fief: {currentlyViewedFief}");
         string bailiff = (currentlyViewedFief.bailiff) != null ? currentlyViewedFief.bailiff.charName : "-";
         string status;
         switch(currentlyViewedFief.status) {

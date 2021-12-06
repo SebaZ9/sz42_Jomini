@@ -59,8 +59,8 @@ public class ViewArmy : Controller
             // Can't attack if you don't have an army.
             if(!string.IsNullOrWhiteSpace(protoClient.activeChar.armyID)) {
                 // Can't attack your own armies.
-                if(!currentlyViewedArmy.ownerID.Equals(protoClient.playerChar.charID)) {
-                    if(currentlyViewedArmy.location.Equals(protoClient.playerChar.location)) {
+                if (!currentlyViewedArmy.ownerID.Equals(protoClient.playerChar.charID)) {
+                    if(currentlyViewedArmy.location.StartsWith(fiefNames[protoClient.playerChar.location])) {
                         btnAttackArmy.interactable = true;
                     }
                 }
@@ -81,6 +81,12 @@ public class ViewArmy : Controller
     private void SwitchOffPanel()
     {
         PickUpPanel.SetActive(false);
+    }
+
+    public void BtnControlArmy()
+    {
+        AppointLeader(armyToViewID, protoClient.activeChar.charID, tclient);
+        GoToScene(SceneName.ViewArmy);
     }
 
     private void BtnListDetachments()
@@ -152,7 +158,7 @@ public class ViewArmy : Controller
     private void PickupDetachement()
     {
         string[] detachementID = new string[] { UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.name };
-        Debug.Log($"ID: {currentlyViewedArmy.armyID} || name {detachementID[0]}");
+        Debug.Log($"ID: {currentlyViewedArmy.armyID} || name {detachementID[0]}------------------------------------");
         ProtoMessage reply = PickUpTroops(currentlyViewedArmy.armyID, detachementID, tclient);
 
         switch (reply.ResponseType)
@@ -179,7 +185,7 @@ public class ViewArmy : Controller
                 }
             case DisplayMessages.Success:
                 {
-                    DisplayMessageToUser("Success!");
+                    GoToScene(SceneName.ViewArmy);
                     break;
                 }
         }
@@ -205,6 +211,32 @@ public class ViewArmy : Controller
         if(totalTroops > 0)
         {
             ProtoMessage reply = DropOffTroops(troops, tclient);
+
+            switch (reply.ResponseType)
+            {
+                case DisplayMessages.ErrorGenericMessageInvalid:
+                    {
+                        DisplayMessageToUser("ErrorGenericMessageInvalid!");
+                        break;
+                    }
+                case DisplayMessages.ErrorGenericArmyUnidentified:
+                    {
+                        DisplayMessageToUser("ErrorGenericArmyUnidentified!");
+                        break;
+                    }
+                case DisplayMessages.ErrorGenericUnauthorised:
+                    {
+                        DisplayMessageToUser("ErrorGenericUnauthorised!");
+                        break;
+                    }
+                case DisplayMessages.Success:
+                    {
+                        GoToScene(SceneName.ViewArmy);
+                        break;
+                    }
+            }
+
+            
         }
 
     }
@@ -222,7 +254,7 @@ public class ViewArmy : Controller
                 }
             case DisplayMessages.Success:
                 {
-                    DisplayMessageToUser("Success!");
+                    GoToScene(SceneName.ViewArmiesList);
                     break;
                 }
             default:
