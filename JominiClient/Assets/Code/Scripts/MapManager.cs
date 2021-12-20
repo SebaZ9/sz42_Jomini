@@ -62,6 +62,8 @@ public class MapManager : Controller
         UpdateFiefPanel();
     }
 
+
+
     private void CreateMap() {
         ProtoWorldMap worldMap = (ProtoWorldMap)GetWorldMap(tclient);
         fiefProvince = new Dictionary<string, string>();
@@ -351,7 +353,7 @@ public class MapManager : Controller
     // Update is called once per frame
     public void Update()
     {
-
+        base.Update();
         if (Input.GetMouseButtonDown(0)) {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3Int gridPosition = map.WorldToCell(mousePosition);

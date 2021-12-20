@@ -39,6 +39,7 @@ public class ViewFief : Controller
     public Button btnSpyFief;
     public Button btnSiegeFief;
     public Button btnViewSiege;
+    public Button btnEnterExitFief;
 
     private ProtoFief currentlyViewedFief;
 
@@ -180,6 +181,25 @@ public class ViewFief : Controller
         GoToScene(SceneName.ViewSiege);
     }
 
+
+    public void BrnEnterExitFief()
+    {
+        ProtoMessage reply = EnterExitKeep(protoClient.activeChar.charID, tclient);
+
+        switch (reply.ResponseType)
+        {
+            case DisplayMessages.ErrorGenericUnauthorised:
+                {
+                    DisplayMessageToUser("Unauthorised.");
+                    break;
+                }
+            case DisplayMessages.Success:
+                {
+                    DisplayMessageToUser("Successfuly Enter/Exit fief.");
+                    break;
+                }
+        }
+    }
 
     private void BtnSpyOnFief()
     {

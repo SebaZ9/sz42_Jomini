@@ -58,7 +58,7 @@ public class ViewCharacter : Controller
             if (!string.IsNullOrWhiteSpace(currentlyViewedCharacter.armyID)) { // Viewed char is leading an army.
                 btnViewArmy.interactable = true;
             }
-            if(currentlyViewedCharacter is ProtoNPC) {
+            if(currentlyViewedCharacter is ProtoNPC || currentlyViewedCharacter is ProtoCharacter) {
                 var temp = currentlyViewedCharacter as ProtoNPC;
 
                 Debug.Log($"Spose: {protoClient.activeChar.spouse}");
@@ -71,8 +71,9 @@ public class ViewCharacter : Controller
                 }
                 else if (!string.IsNullOrEmpty(protoClient.activeChar.spouse))
                 {
-                    btnTryForChild.gameObject.SetActive(true);
-                    // Try for child
+                    if(currentlyViewedCharacter.isMale)
+                        btnTryForChild.gameObject.SetActive(true);
+                        // Try for child
                 } else
                 {
 

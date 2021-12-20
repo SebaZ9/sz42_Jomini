@@ -64,6 +64,7 @@ namespace ProtoMessageClient {
     [ProtoInclude(34, typeof(ProtoCombatValues))]
     [ProtoInclude(37, typeof(ProtoWorldMap))]
     [ProtoInclude(38, typeof(ProtoProvince))]
+    [ProtoInclude(39, typeof(ProtoGameEvent))]
 
 
     [ProtoContract, Serializable]
@@ -1821,6 +1822,17 @@ namespace ProtoMessageClient {
                 i += 3;
             }
         }
+    }
+
+    /// <summary>
+    /// Contains various keys and salts for logging in
+    /// </summary>
+    [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]
+    public class ProtoGameEvent : ProtoMessage
+    {
+        public EventTypes eventType { get; set; }
+        public DateTime nextUpdate { get; set; }
+
     }
 
     [ProtoContract(ImplicitFields = ImplicitFields.AllPublic)]

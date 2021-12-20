@@ -122,7 +122,7 @@ namespace JominiEngine
             titleHolder.myTitles.Remove(this.id);
 
             // add to newOwner's titles
-            newOwner.myTitles.Add(this.id);
+            newOwner.myTitles.Add(this.id); 
 
             // update kingdom titleHolder property
             this.titleHolder = newOwner.charID;

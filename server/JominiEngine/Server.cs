@@ -25,7 +25,7 @@ namespace JominiEngine
 
         private static NetServer server;
         /******Server Settings  ******/
-        private readonly int port = 8000;
+        private readonly int port = 8080;
         //private readonly string host_name = "localhost";
         private readonly string host_name = "192.168.0.16";
         //private readonly string host_name = "92.239.228.86";
@@ -43,6 +43,10 @@ namespace JominiEngine
         /// Lock used to ensure list of connected clients is consistent
         /// </summary>
         private readonly object ServerLock = new object();
+
+        private DateTime lastServerUpdate;
+        private bool UseAutoUpdate = false;
+        private int UpdateSeasonTime = 30; // Season will auto update ever (UpdateSeasonTime) Seconds
 
         [ContractInvariantMethod]
         private void Invariant()
@@ -71,6 +75,7 @@ namespace JominiEngine
         /// </summary>
         private void initialise(bool createAccountForAllPCs = true)
         {
+            lastServerUpdate = DateTime.Now;
             LogInManager.StoreNewUser("helen", "potato");
             LogInManager.StoreNewUser("test", "tomato");
             NetPeerConfiguration config = new NetPeerConfiguration(app_identifier);
@@ -138,9 +143,9 @@ namespace JominiEngine
             while (server.Status == NetPeerStatus.Running && !ctSource.Token.IsCancellationRequested)
             {
                 Globals_Server.logEvent("Waiting for event");
+                UpdateSeason();
                 NetIncomingMessage im;
-                WaitHandle.WaitAny(new WaitHandle[] {server.MessageReceivedEvent, ctSource.Token.WaitHandle});
-                Globals_Server.logEvent("Got event");
+                WaitHandle.WaitAny(new WaitHandle[] {server.MessageReceivedEvent, ctSource.Token.WaitHandle}, 5000);
                 while ((im = server.ReadMessage()) != null && !ctSource.Token.IsCancellationRequested)
                 {
                     if(im.SenderConnection != null){
@@ -371,21 +376,6 @@ namespace JominiEngine
                 );
         }
 
-        //public static void SendViaProto(global::ProtoMessage.ProtoMessage m, NetConnection conn, bool isPCL, NetEncryption alg = null)
-        //{
-        //    Contract.Requires(m != null && conn != null);
-        //    NetOutgoingMessage msg = server.CreateMessage();
-        //    MemoryStream ms = new MemoryStream();
-        //    Serializer.SerializeWithLengthPrefix<global::ProtoMessage.ProtoMessage>(ms, m, PrefixStyle.Fixed32);
-        //    msg.Write(ms.GetBuffer());
-        //    if (alg != null)
-        //    {
-        //        msg.Encrypt(alg);
-        //    }
-        //    server.SendMessage(msg, conn, NetDeliveryMethod.ReliableOrdered);
-        //    server.FlushSendQueue();
-        //}
-
         /// <summary>
         /// Read a message, get the relevant reply and send to client
         /// </summary>
@@ -439,64 +429,6 @@ namespace JominiEngine
             }
         }
 
-        //public void ProcessMessage(global::ProtoMessage.ProtoMessage m, NetConnection connection)
-        //{
-        //    Contract.Requires(connection != null && m != null);
-        //    Client client;
-        //    clientConnections.TryGetValue(connection, out client);
-        //    if (client == null)
-        //    {
-        //        NetOutgoingMessage errorMessage =
-        //            server.CreateMessage("There was a problem with the connection. Please try re-connecting");
-        //        server.SendMessage(errorMessage, connection, NetDeliveryMethod.ReliableOrdered);
-        //        string log = "Connection from peer " + connection.Peer.UniqueIdentifier +
-        //                     " not found in client connections. Timestamp: " +
-        //                     DateTime.Now.ToString(DateTimeFormatInfo.CurrentInfo);
-        //        Globals_Server.logError(log);
-        //        return;
-        //    }
-        //    var pc = client.myPlayerCharacter;
-        //    if (pc == null || !pc.isAlive)
-        //    {
-        //        NetOutgoingMessage msg = server.CreateMessage("You have no valid PlayerCharacter!");
-        //        server.SendMessage(msg, connection, NetDeliveryMethod.ReliableOrdered);
-        //        server.FlushSendQueue();
-        //    }
-        //    else
-        //    {
-        //        ProtoMessage forActionController = new ProtoMessage();
-        //        string responseType = m.ResponseType.ToString();
-        //        /*forActionController.ResponseType = responseType;
-        //        ProtoMessage reply = Game.ActionController(m, client);
-        //        // Set action type to ensure client knows which action invoked response
-        //        if (reply == null)
-        //        {
-        //            ProtoMessage invalid = new ProtoMessage(DisplayMessages.ErrorGenericMessageInvalid);
-        //            invalid.ActionType = Actions.Update;
-        //            reply = invalid;
-        //        }
-        //        else
-        //        {
-        //            reply.ActionType = m.ActionType;
-        //        }
-        //        SendViaProto(reply, connection, true, client.alg);
-        //        Globals_Server.logEvent("From " + clientConnections[connection] + ": request = " +
-        //                                m.ActionType.ToString() + ", reply = " + reply.ResponseType.ToString());*/
-        //    }
-        //}
-
-        //public DisplayMessages StringToResponseType(string forConversion)
-        //{
-        //    /*switch (forConversion)
-        //    {
-        //        case forConversion == "":
-        //            return 
-        //    }*/
-        //    return DisplayMessages.Armies;
-        //}
-        /// <summary>
-        /// Initialise and start the server
-        /// </summary>
         public Server()
         {
             initialise();
@@ -558,6 +490,33 @@ namespace JominiEngine
                     LogInManager.StoreNewUser(clientUsername, clientPassword);
                     Client client = new Client(clientUsername, pcID);
                     Globals_Server.Clients.Add(clientUsername, client);
+                }
+            }
+        }
+
+        private void UpdateSeason()
+        {
+            if (UseAutoUpdate)
+            {
+                if(DateTime.Now > lastServerUpdate.AddSeconds(UpdateSeasonTime))
+                {
+                    Console.WriteLine("Season auto update");
+                    lastServerUpdate = DateTime.Now;
+                    Globals_Game.game.SeasonUpdate();
+                   
+                    foreach (Client c in Globals_Server.Clients.Values)
+                    {
+                        if (c.conn == null)
+                            continue;
+                        ProtoGameEvent gameEvent = new ProtoGameEvent()
+                        {
+                            eventType = EventTypes.SeasonUpdate,
+                            nextUpdate = lastServerUpdate.AddSeconds(UpdateSeasonTime),
+                            Message = "Season has been updated"
+                        };
+                        SendViaProto(gameEvent, c.conn);
+                        
+                    }
                 }
             }
         }

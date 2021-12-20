@@ -121,18 +121,7 @@ public partial class TextTestClient
             net.ctSource.Token.ThrowIfCancellationRequested();
         }
         return s;
-    }
-
-    /// <summary>
-    /// Gets the next message recieved from the server
-    /// </summary>
-    /// <returns>Task containing the reply as a result</returns>
-    public string GetServerMessage()
-    {
-        string reply;
-        reply = CheckForStringMessage();
-        return reply;
-    }        
+    } 
 
     protected virtual void Dispose(bool dispose)
     {
@@ -159,8 +148,8 @@ public partial class TextTestClient
         private NetConnection connection;
         private string user;
         private string pass;
-        private IPAddress ip = NetUtility.Resolve("192.168.0.16");
-        private int port = 8000;
+        private IPAddress ip = NetUtility.Resolve("82.32.104.80");
+        private int port = 8080;
         private NetEncryption encryptionAlg = null;
         /// <summary>
         /// Optional- set encryption key manually for use in testing
@@ -242,34 +231,6 @@ public partial class TextTestClient
             byte[] hashcode = hash.ComputeHash(fullHash);
             return hashcode;
         }
-
-        /*        ------------------ OLD ---------------
-        public void Send(ProtoMessage message, bool encrypt = true)
-        {
-            NetOutgoingMessage msg = client.CreateMessage();
-            MemoryStream ms = new MemoryStream();
-            try
-            {
-                Serializer.SerializeWithLengthPrefix<ProtoMessage>(ms, message, ProtoBuf.PrefixStyle.Fixed32);
-                msg.Write(ms.GetBuffer());
-                if (encryptionAlg != null && encrypt)
-                {
-                    msg.Encrypt(encryptionAlg);
-                }
-                var result = client.SendMessage(msg, NetDeliveryMethod.ReliableOrdered);
-                client.FlushSendQueue();
-
-            }
-            catch (Exception e)
-            {
-                Debug.Log("Connected - remote hail message\n" + e.GetType()+ "\n" + e.Message + "\n" + e.StackTrace);
-                Exception inner;
-                if(e.InnerException != null) {
-                    inner = e.InnerException;
-                    Debug.Log("Inner Exception:\n" + inner.GetType()+ "\n" + inner.Message + "\n" + inner.StackTrace);
-                }
-            }
-        }*/
 
         public void Send(ProtoMessage message, bool encrypt = true) {
             NetOutgoingMessage msg = client.CreateMessage();
@@ -363,20 +324,6 @@ public partial class TextTestClient
                         encryptionAlg = null;
                         key = null;
                     }
-//#else 
-                    //// Create a new symmetric key
-                    //TripleDES des = TripleDESCryptoServiceProvider.Create();
-                    //des.GenerateKey();
-                    //// Encrypt key with server's public key
-                    //this.key = des.Key;
-                    //key = rsa.Encrypt(des.Key, false);
-                    //// Initialise the algoitm
-                    //encryptionAlg = new NetAESEncryption(client, des.Key, 0, des.Key.Length);
-                    //Console.WriteLine("CLIENT: my unencrypted key:");
-                    //foreach(var bite in des.Key) {
-                    //    Console.Write(bite.ToString());
-                    //}
-//#endif
                     // Validate certificate
                     if(!cert.Verify())
                     {
@@ -411,7 +358,7 @@ public partial class TextTestClient
         {
             while (client.Status == NetPeerStatus.Running && !ctSource.Token.IsCancellationRequested)
             {
-                WaitHandle.WaitAny(new WaitHandle[] { client.MessageReceivedEvent, ctSource.Token.WaitHandle });
+                WaitHandle.WaitAny(new WaitHandle[] { client.MessageReceivedEvent, ctSource.Token.WaitHandle }, 5000);
                 NetIncomingMessage im;
                 while ((im = client.ReadMessage()) != null && !ctSource.IsCancellationRequested)
                 {
@@ -450,7 +397,12 @@ public partial class TextTestClient
                                 }
                                 if (m != null)
                                 {
-                                    if (m.ResponseType == DisplayMessages.LogInSuccess)
+                                    if(m is ProtoGameEvent)
+                                    {
+                                        Controller.gameEvent = (ProtoGameEvent)m;
+                                        Controller.EventUpdateSeason = true;
+                                    }
+                                    else if (m.ResponseType == DisplayMessages.LogInSuccess)
                                     {
                                         loggedIn = true;
                                         tClient.protobufMessageQueue.Enqueue(m);

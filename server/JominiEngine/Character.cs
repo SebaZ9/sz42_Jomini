@@ -1660,7 +1660,7 @@ namespace JominiEngine
                     if (npc.employer.Equals(deceased.charID))
                     {
                         npc.employer = king.charID;
-                        king.myNPCs.Add(npc);
+                        // king.myNPCs.Add(npc);  // CRASHES SERVER CURRENTLY
                     }
                 }
 
@@ -1733,7 +1733,7 @@ namespace JominiEngine
                     }
                 }
             }
-
+            /* // CURRENTLY CRASHES SERVER
             // TITLES
             foreach (string title in deceased.myTitles)
             {
@@ -1753,7 +1753,7 @@ namespace JominiEngine
                 {
                     if (thisPlace.owner == deceased)
                     {
-                        thisPlace.titleHolder = king.charID;
+                        // thisPlace.titleHolder = king.charID; CURRENTLY CRASHES SERVER
                         king.myTitles.Add(title);
                     }
 
@@ -1765,6 +1765,8 @@ namespace JominiEngine
             }
 
             deceased.myTitles.Clear();
+
+            */
 
             // PLACES
 
@@ -2789,10 +2791,10 @@ namespace JominiEngine
             }
 
             // compare chanceOfPregnancy with randPercentage to see if pregnancy successful
-            if (chanceOfPregnancy > 0)
+            if (true)      // (chanceOfPregnancy > 0) // Changed to 100% for testing
             {
                 // if attempt successful
-                if (randPercentage <= chanceOfPregnancy)
+                if (true) // (randPercentage <= chanceOfPregnancy) // Changed to 100% for testing
                 {
                     // set spouse as pregnant
                     wife.isPregnant = true;

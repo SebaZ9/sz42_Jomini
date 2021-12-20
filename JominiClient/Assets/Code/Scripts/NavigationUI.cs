@@ -21,6 +21,9 @@ public class NavigationUI : Controller
     [SerializeField] private Text lblGameDate;
     [SerializeField] private Text lblRealTime;
 
+    public Text textEventMessage;
+    public GameObject eventBox;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -36,6 +39,12 @@ public class NavigationUI : Controller
 
         string season = SeasonToString(protoClient.Season);
         lblGameDate.text = season + "\n" + protoClient.Year.ToString();
+    }
+
+    public void BtnShowEvent(string message)
+    {
+        textEventMessage.text = message;
+        eventBox.SetActive(true);        
     }
 
     private void BtnEndSeason() {

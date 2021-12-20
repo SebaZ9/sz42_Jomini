@@ -8,6 +8,12 @@ namespace ProtoMessageClient
     /// <summary>
     /// Class storing any required static variables for server-side
     /// </summary>
+    /// 
+    public enum EventTypes
+    {
+        SeasonUpdate
+    }
+
     public static class Globals_Server
     {
         /// <summary>

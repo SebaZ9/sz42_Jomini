@@ -11,9 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-public class Controller : MonoBehaviour
-{
-    ////login sence
+public class Controller : MonoBehaviour { 
 
     ////Other value
     public static TextTestClient tclient;
@@ -28,7 +26,7 @@ public class Controller : MonoBehaviour
     public static ProtoSiegeDisplay sc;
     public static ProtoGenericArray<ProtoSiegeOverview> sl;
 
-    public static string ipAddress = "192.168.0.16";
+    public static string ipAddress = "82.32.104.80";
 
     public enum SceneName {
         FiefDetails, LogIn, MainMenu, Map, ViewArmy, ViewCharacter, ViewFief, ViewingList, ViewJournalEntry, ViewArmiesList, ViewMyFiefsList, ChangeCharactersList, ViewJournalEntries,
@@ -61,6 +59,23 @@ public class Controller : MonoBehaviour
 
 
     private static float TimeOutLimit = 5000f;
+
+    public static bool EventUpdateSeason = false;
+    public static ProtoGameEvent gameEvent;
+
+    public void Update()
+    {
+        if (EventUpdateSeason)
+        {
+            GameObject UI = GameObject.Find("NavigationUI");
+            if (UI != null)
+            {
+                UI.transform.Find("EventBox").gameObject.SetActive(true);
+                UI.transform.Find("EventBox").transform.GetChild(1).GetComponent<Text>().text = "The season has been updated!.\n Next season update will be on: " + gameEvent.nextUpdate.ToString();
+            }
+            EventUpdateSeason = false;
+        }
+    }
 
     public static void Initialise()
     {
@@ -827,10 +842,10 @@ public class Controller : MonoBehaviour
     public static ProtoMessage EnterExitKeep(string charID, TextTestClient client)
     {
         ProtoMessage protoMessage = new ProtoMessage();
-        protoMessage.ActionType = Actions.GrantFiefTitle;
+        protoMessage.ActionType = Actions.EnterExitKeep;
         protoMessage.Message = charID;
         client.net.Send(protoMessage);
-        var reply = GetActionReply(Actions.GrantFiefTitle, client);
+        var reply = GetActionReply(Actions.EnterExitKeep, client);
         return reply;
     }
 

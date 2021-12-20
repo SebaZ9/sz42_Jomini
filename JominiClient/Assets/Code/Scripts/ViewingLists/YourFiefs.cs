@@ -36,9 +36,9 @@ public class YourFiefs : Controller
 
                     UIElement.transform.GetChild(0).GetComponent<TMPro.TMP_Text>().SetText(fief.FiefName);
                     UIElement.transform.GetChild(1).GetComponent<TMPro.TMP_Text>().SetText(fief.population.ToString());
-                    UIElement.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().SetText(fief.industry.ToString());
-                    UIElement.transform.GetChild(3).GetComponent<TMPro.TMP_Text>().SetText(fief.fields.ToString());
-                    UIElement.transform.GetChild(4).GetComponent<TMPro.TMP_Text>().SetText(fief.keepLevel.ToString());
+                    UIElement.transform.GetChild(2).GetComponent<TMPro.TMP_Text>().SetText(fief.industry.ToString("F2"));
+                    UIElement.transform.GetChild(3).GetComponent<TMPro.TMP_Text>().SetText(fief.fields.ToString("F2"));
+                    UIElement.transform.GetChild(4).GetComponent<TMPro.TMP_Text>().SetText(fief.keepLevel.ToString("F2"));
                     UIElement.transform.GetChild(5).GetComponent<TMPro.TMP_Text>().SetText(status);
                     UIElement.transform.GetChild(6).GetComponent<TMPro.TMP_Text>().SetText(fief.treasury.ToString());
                     UIElement.transform.localScale = Vector3.one;
