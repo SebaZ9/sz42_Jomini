@@ -1,0 +1,12 @@
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\bin\Debug\net6.0\ProtoMessageClient.deps.json
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\bin\Debug\net6.0\ProtoMessageClient.dll
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\bin\Debug\net6.0\ref\ProtoMessageClient.dll
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\bin\Debug\net6.0\ProtoMessageClient.pdb
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.csproj.AssemblyReference.cache
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.AssemblyInfoInputs.cache
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.AssemblyInfo.cs
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.csproj.CoreCompileInputs.cache
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.dll
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ref\ProtoMessageClient.dll
+C:\Users\lubex\source\repos\JominiGame\ProtoMessage\obj\Debug\net6.0\ProtoMessageClient.pdb

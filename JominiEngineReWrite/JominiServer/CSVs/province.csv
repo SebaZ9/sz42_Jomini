@@ -1,0 +1,40 @@
+ID,Name,Rank,Province Tax,Title Holder,Owner,Kingdom
+,,,,,,
+EAR00,Shropshire,11,0,Char_47,Char_47,E0000
+EBK00,Buckingham,11,0,Char_47,Char_47,E0000
+ECG00,Cambridge,11,0,Char_40,Char_40,E0000
+ECH00,Cheshire,11,0,Char_244,Char_244,E0000
+ECU00,Cumberland,11,0,Char_47,Char_47,E0000
+ECW00,Cornwall,11,0,Char_47,Char_47,E0000
+EDR00,Derby,11,0,Char_292,Char_292,E0000
+EDT00,Dorsetshire,11,0,Char_47,Char_47,E0000
+EDU00,Durham,6,0,Char_46,Char_46,E0000
+EDV00,Devon,11,0,Char_239,Char_239,E0000
+EEX00,Essex,11,0,Char_233,Char_233,E0000
+EGL00,Gloucestershire,11,0,Char_97,Char_97,E0000
+EHE00,Hereford,11,0,Char_47,Char_47,E0000
+EHM00,Hampshire,11,0,Char_47,Char_47,E0000
+EKE00,Kent,11,0,Char_47,Char_47,E0000
+ELA00,Lancaster,11,0,Char_47,Char_47,E0000
+ELC00,Lincolnshire,11,0,Char_237,Char_237,E0000
+ELN00,London,7,0,Char_47,Char_47,E0000
+ENF00,Norfolk,11,0,Char_265,Char_265,E0000
+ENH00,Leicester,11,0,Char_93,Char_93,E0000
+ENO00,Nottingham,11,0,Char_292,Char_292,E0000
+ENU00,Northumberland,11,0,Char_46,Char_46,E0000
+ENW00,North Wales,9,0,Char_261,Char_261,E0000
+EOX00,Oxfordshire,11,0,Char_280,Char_280,E0000
+EPM00,Pembroke,11,0,Char_158,Char_158,E0000
+ESM00,Somerset,11,0,Char_47,Char_47,E0000
+ESR00,Surrey,11,0,Char_281,Char_281,E0000
+EST00,Staffordshire,11,0,Char_47,Char_47,E0000
+ESU00,Hertford,11,0,Char_186,Char_186,E0000
+ESW00,South Wales,9,0,Char_196,Char_196,E0000
+ESX00,Sussex,11,0,Char_165,Char_165,E0000
+ESY00,Salisbury,15,0,Char_101,Char_101,E0000
+EWK00,Warwickshire,11,0,Char_256,Char_256,E0000
+EYS00,Yorkshire,11,0,Char_47,Char_47,E0000
+SHI00,Highlands,11,0,Char_40,Char_40,S0000
+SLO00,Lowlands,11,0,Char_40,Char_40,S0000
+SMA00,Marches,11,0,Char_40,Char_40,S0000
+EMN00,Man,17,0,Char_47,Char_47,E0000

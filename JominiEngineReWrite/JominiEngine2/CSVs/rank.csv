@@ -1,0 +1,15 @@
+ID,Stature,Language,Name,Language,Name,Language,Name,Language,Name,Language,Name,Language,Name
+,,,,,,,,,,,,,
+3,6,generic,King,lang_F1,Roi,lang_F2,Roi,lang_F3,Roi,lang_F4,Roi,lang_F5,Roi
+6,5,generic,Prince Bishop,,,,,,,,,,
+7,5,generic,Duc,,,,,,,,,,
+8,4,generic,Dauphine,,,,,,,,,,
+9,4,generic,Prince,,,,,,,,,,
+11,3,generic,Earl,lang_F1,Comte,lang_F2,Comte,lang_F3,Comte,lang_F4,Comte,lang_F5,Comte
+12,3,generic,Captal,,,,,,,,,,
+13,2,generic,Vicomte,,,,,,,,,,
+15,2,generic,Baron,,,,,,,,,,
+16,1,generic,Seigneur,,,,,,,,,,
+17,1,generic,Lord,lang_F1,Sire,lang_F2,Sire,lang_F3,Sire,lang_F4,Sire,lang_F5,Sire
+18,1,generic,Vidame,,,,,,,,,,
+19,1,generic,Chatelain,,,,,,,,,,

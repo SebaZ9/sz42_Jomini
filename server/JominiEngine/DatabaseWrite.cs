@@ -455,7 +455,7 @@ namespace JominiEngine
 				this.b=b;
 			}
 		}
-		public static bool DatabaseWrite_Test(string gameID) {
+        public static bool DatabaseWrite_Test(string gameID) {
 			if (!Globals_Server.rClient.Ping ().IsSuccess) {
 				Console.WriteLine ("NOW PING FAILS");
 			}

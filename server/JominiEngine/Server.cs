@@ -27,7 +27,7 @@ namespace JominiEngine
         /******Server Settings  ******/
         private readonly int port = 8080;
         //private readonly string host_name = "localhost";
-        private readonly string host_name = "192.168.0.16";
+        private readonly string host_name = "192.168.1.154";
         //private readonly string host_name = "92.239.228.86";
         private readonly int max_connections = 2000;
         // Used in the NetPeerConfiguration to identify application
@@ -76,8 +76,8 @@ namespace JominiEngine
         private void initialise(bool createAccountForAllPCs = true)
         {
             lastServerUpdate = DateTime.Now;
-            LogInManager.StoreNewUser("helen", "potato");
-            LogInManager.StoreNewUser("test", "tomato");
+            LogInManager.StoreNewUser("acc1", "pass1");
+            LogInManager.StoreNewUser("acc2", "pass2");
             NetPeerConfiguration config = new NetPeerConfiguration(app_identifier);
             config.LocalAddress = NetUtility.Resolve(host_name);
             config.MaximumConnections = max_connections;
@@ -111,10 +111,10 @@ namespace JominiEngine
             Globals_Server.server = server;
             Globals_Server.logEvent("Server started- host: " + host_name + ", port: " + port + ", appID: " +
                                     app_identifier + ", max connections: " + max_connections);
-            Client client = new Client("helen", "Char_47");
-            Globals_Server.Clients.Add("helen", client);
-            Client client2 = new Client("test", "Char_126");
-            Globals_Server.Clients.Add("test", client2);
+            Client client = new Client("acc1", "Char_47");
+            Globals_Server.Clients.Add("acc1", client);
+            Client client2 = new Client("acc2", "Char_126");
+            Globals_Server.Clients.Add("acc2", client2);
             String dir = Directory.GetCurrentDirectory();
             //dir = dir.Remove(dir.IndexOf("RepairHist_mmo"));
             String path;

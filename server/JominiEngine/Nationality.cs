@@ -13,18 +13,18 @@ namespace JominiEngine
         /// <summary>
         /// Holds nationality ID
         /// </summary>
-        public String natID { get; set; }
+        public string natID { get; set; }
         /// <summary>
         /// Holds nationality name
         /// </summary>
-        public String name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// Constructor for Nationality
         /// </summary>
         /// <param name="id">String holding nationality ID</param>
         /// <param name="nam">String holding nationality name</param>
-        public Nationality(String id, String nam)
+        public Nationality(string id, string nam)
         {
 
             // TODO: validate id = string B,C,D,E,F,G,H,I,L/1-3
@@ -35,8 +35,8 @@ namespace JominiEngine
                 throw new InvalidDataException("Nationality name must be between 1 and 20 characters in length");
             }
 
-            this.natID = id;
-            this.name = nam;
+            natID = id;
+            name = nam;
 
         }
 

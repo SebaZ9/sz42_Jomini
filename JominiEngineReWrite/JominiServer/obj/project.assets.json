@@ -1,0 +1,253 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "Lidgren.Network/1.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/net451/Lidgren.Network.dll": {}
+        },
+        "runtime": {
+          "lib/net451/Lidgren.Network.dll": {}
+        }
+      },
+      "protobuf-net/3.0.101": {
+        "type": "package",
+        "dependencies": {
+          "protobuf-net.Core": "3.0.101"
+        },
+        "compile": {
+          "lib/net5.0/protobuf-net.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/protobuf-net.dll": {}
+        }
+      },
+      "protobuf-net.Core/3.0.101": {
+        "type": "package",
+        "compile": {
+          "lib/net5.0/protobuf-net.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/protobuf-net.Core.dll": {}
+        }
+      },
+      "QuickGraph/3.6.61119.7": {
+        "type": "package",
+        "compile": {
+          "lib/net4/QuickGraph.Data.dll": {},
+          "lib/net4/QuickGraph.Graphviz.dll": {},
+          "lib/net4/QuickGraph.Serialization.dll": {},
+          "lib/net4/QuickGraph.dll": {}
+        },
+        "runtime": {
+          "lib/net4/QuickGraph.Data.dll": {},
+          "lib/net4/QuickGraph.Graphviz.dll": {},
+          "lib/net4/QuickGraph.Serialization.dll": {},
+          "lib/net4/QuickGraph.dll": {}
+        }
+      },
+      "JominiGame/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "QuickGraph": "3.6.61119.7",
+          "protobuf-net": "3.0.101"
+        },
+        "compile": {
+          "bin/placeholder/JominiGame.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/JominiGame.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Lidgren.Network/1.0.2": {
+      "sha512": "yXg3ccH3OYFGnsXxzcrUo2FXsXHaZzTUjRCg84NCPGnZyjw6MhwJFHe6MdEVIzejXsE86Kto/sgeV29HSRc8xQ==",
+      "type": "package",
+      "path": "lidgren.network/1.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/Lidgren.Network.dll",
+        "lib/net451/Lidgren.Network.pdb",
+        "lidgren.network.1.0.2.nupkg.sha512",
+        "lidgren.network.nuspec"
+      ]
+    },
+    "protobuf-net/3.0.101": {
+      "sha512": "mLm8VGfGylp9q+rbJDp3uw0BOeNzfGENecVz/EYGlzq3ss7tfajGXHCMoZm/GxJ9vSn9pcK22UXWZnQ5GJQMjA==",
+      "type": "package",
+      "path": "protobuf-net/3.0.101",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/protobuf-net.dll",
+        "lib/net461/protobuf-net.xml",
+        "lib/net5.0/protobuf-net.dll",
+        "lib/net5.0/protobuf-net.xml",
+        "lib/netcoreapp3.1/protobuf-net.dll",
+        "lib/netcoreapp3.1/protobuf-net.xml",
+        "lib/netstandard2.0/protobuf-net.dll",
+        "lib/netstandard2.0/protobuf-net.xml",
+        "lib/netstandard2.1/protobuf-net.dll",
+        "lib/netstandard2.1/protobuf-net.xml",
+        "protobuf-net.3.0.101.nupkg.sha512",
+        "protobuf-net.nuspec",
+        "protobuf-net.png"
+      ]
+    },
+    "protobuf-net.Core/3.0.101": {
+      "sha512": "gf9QIF0RlctfjmOjbE6eOyMulkNEsH7tHncjKj/4BTu9tkuTyrH3fv5I+35GnolJqKJ6fh9kYaezvNRL3t75+Q==",
+      "type": "package",
+      "path": "protobuf-net.core/3.0.101",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/protobuf-net.Core.dll",
+        "lib/net461/protobuf-net.Core.xml",
+        "lib/net5.0/protobuf-net.Core.dll",
+        "lib/net5.0/protobuf-net.Core.xml",
+        "lib/netcoreapp3.1/protobuf-net.Core.dll",
+        "lib/netcoreapp3.1/protobuf-net.Core.xml",
+        "lib/netstandard2.0/protobuf-net.Core.dll",
+        "lib/netstandard2.0/protobuf-net.Core.xml",
+        "lib/netstandard2.1/protobuf-net.Core.dll",
+        "lib/netstandard2.1/protobuf-net.Core.xml",
+        "protobuf-net.core.3.0.101.nupkg.sha512",
+        "protobuf-net.core.nuspec",
+        "protobuf-net.png"
+      ]
+    },
+    "QuickGraph/3.6.61119.7": {
+      "sha512": "crtYNiFcYFtYbmbEfdYsdGw5M3923OO5ZZD25K+WeLPgTp/q4oq3U/FVrbaOK5+Jg8UJDmoZ6sqAVion4RgXCA==",
+      "type": "package",
+      "path": "quickgraph/3.6.61119.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net4/CodeContracts/QuickGraph.Contracts.dll",
+        "lib/net4/CodeContracts/QuickGraph.Data.Contracts.dll",
+        "lib/net4/CodeContracts/QuickGraph.Graphviz.Contracts.dll",
+        "lib/net4/CodeContracts/QuickGraph.Serialization.Contracts.dll",
+        "lib/net4/QuickGraph.Data.XML",
+        "lib/net4/QuickGraph.Data.dll",
+        "lib/net4/QuickGraph.Graphviz.XML",
+        "lib/net4/QuickGraph.Graphviz.dll",
+        "lib/net4/QuickGraph.Serialization.XML",
+        "lib/net4/QuickGraph.Serialization.dll",
+        "lib/net4/QuickGraph.XML",
+        "lib/net4/QuickGraph.dll",
+        "quickgraph.3.6.61119.7.nupkg.sha512",
+        "quickgraph.nuspec"
+      ]
+    },
+    "JominiGame/1.0.0": {
+      "type": "project",
+      "path": "../JominiEngine2/JominiGame.csproj",
+      "msbuildProject": "../JominiEngine2/JominiGame.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "JominiGame >= 1.0.0",
+      "Lidgren.Network >= 1.0.2",
+      "protobuf-net >= 3.0.101"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\lubex\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiServer\\JominiServer.csproj",
+      "projectName": "JominiServer",
+      "projectPath": "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiServer\\JominiServer.csproj",
+      "packagesPath": "C:\\Users\\lubex\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiServer\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\lubex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiEngine2\\JominiGame.csproj": {
+              "projectPath": "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiEngine2\\JominiGame.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "dependencies": {
+          "Lidgren.Network": {
+            "target": "Package",
+            "version": "[1.0.2, )"
+          },
+          "protobuf-net": {
+            "target": "Package",
+            "version": "[3.0.101, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Lidgren.Network 1.0.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Lidgren.Network",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'QuickGraph 3.6.61119.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "QuickGraph",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

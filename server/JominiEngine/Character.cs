@@ -987,7 +987,7 @@ namespace JominiEngine
                 Globals_Game.scheduledEvents.entries.Remove(jEntry.jEntryID);
             }
 
-            this.isPregnant = false;
+            isPregnant = false;
 
             // clear births
             births.Clear();
@@ -3435,407 +3435,7 @@ namespace JominiEngine
         }
 
 
-        /// <summary>
-        /// Preforms conditional checks prior to examining armies in a fief
-        /// </summary>
-        /// <returns>bool indicating whether to proceed with examination</returns>
-        public bool ChecksBefore_ExamineArmies(out ProtoMessage error)
-        {
-            error = null;
-            bool proceed = true;
-            int reconDays = 0;
-            PlayerCharacter player = null;
-            if (this is PlayerCharacter)
-            {
-                player = (PlayerCharacter)this;
-            }
-            else
-            {
-                player = this.GetHeadOfFamily();
-                if (player == null)
-                {
-                    player = (this as NonPlayerCharacter).GetEmployer();
-                }
-            }
-            
-            // check if has minimum days
-            if (this.days < 1)
-            {
-                proceed = false;
-                if (player!=null)
-                {
-                    error = new ProtoMessage();
-                    error.ResponseType = DisplayMessages.ErrorGenericNotEnoughDays;
-                }
-            }
-
-            // has minimum days
-            else
-            {
-                // see how long reconnaissance takes
-                reconDays = Globals_Game.myRand.Next(1, 4);
-
-                // check if runs out of time
-                if (this.days < reconDays)
-                {
-                    proceed = false;
-
-                    // set days to 0
-                    this.AdjustDays(this.days);
-
-                    if (player!=null)
-                    {
-                        error = new ProtoMessage();
-                        error.ResponseType = DisplayMessages.ErrorGenericPoorOrganisation;
-                    }
-                }
-                else
-                {
-                    // if observer NPC, remove from entourage if necessary
-                    if (this is NonPlayerCharacter)
-                    {
-                        if ((this as NonPlayerCharacter).inEntourage)
-                        {
-                            player.RemoveFromEntourage(this as NonPlayerCharacter);
-                        }
-                    }
-
-                    // adjust days for recon
-                    this.AdjustDays(reconDays);
-                }
-
-            }
-
-            return proceed;
-        }
-		//TODO replace with proto
-        /// <summary>
-        /// Retrieves information for Character display
-        /// </summary>
-        /// <returns>String containing information to display</returns>
-        /// <param name="showFullDetails">bool indicating whether to display full character details</param>
-        /// <param name="showTitles">bool indicating whether to display character's titles</param>
-        /// <param name="observer">Character who is viewing this character's information</param>
-        public string DisplayCharacter(bool showFullDetails, bool showTitles, Character observer)
-        {
-            string charText = "";
-
-            // check to see if is army leader
-            if (!String.IsNullOrWhiteSpace(this.armyID))
-            {
-                charText += "NOTE: This character is currently LEADING AN ARMY (" + this.armyID + ")\r\n\r\n";
-            }
-
-            // check to see if is under siege
-            if (!String.IsNullOrWhiteSpace(this.location.siege))
-            {
-                if (this.inKeep)
-                {
-                    charText += "NOTE: This character is located in a KEEP UNDER SIEGE\r\n\r\n";
-                }
-            }
-
-            // character ID
-            charText += "Character ID: " + this.charID + "\r\n";
-
-            // player ID
-            if (this is PlayerCharacter)
-            {
-                if (!String.IsNullOrWhiteSpace((this as PlayerCharacter).playerID))
-                {
-                    charText += "Player ID: " + (this as PlayerCharacter).playerID + "\r\n";
-                }
-            }
-
-            // name
-            charText += "Name: " + this.firstName + " " + this.familyName + "\r\n";
-
-            // age
-            charText += "Age: " + this.CalcAge() + "\r\n";
-
-            // sex
-
-            charText += "Sex: ";
-            if (this.isMale)
-            {
-                charText += "Male";
-            }
-            else
-            {
-                charText += "Female";
-            }
-            charText += "\r\n";
-
-            // nationality
-            charText += "Nationality: " + this.nationality.name + "\r\n";
-
-            if ((this is PlayerCharacter) && (showFullDetails))
-            {
-                // home fief
-                Fief homeFief = (this as PlayerCharacter).GetHomeFief();
-                charText += "Home fief: " + homeFief.name + " (" + homeFief.id + ")\r\n";
-
-                // ancestral home fief
-                Fief ancHomeFief = (this as PlayerCharacter).GetAncestralHome();
-                charText += "Ancestral Home fief: " + ancHomeFief.name + " (" + ancHomeFief.id + ")\r\n";
-            }
-
-            // health (& max. health)
-            charText += "Health: ";
-            if (!this.isAlive)
-            {
-                charText += "Oops - Dead!";
-            }
-            else
-            {
-                charText += this.CalculateHealth() + " (max. health: " + this.maxHealth + ")";
-            }
-            charText += "\r\n";
-
-            // virility
-            if (showFullDetails)
-            {
-                charText += "Virility: " + this.virility + "\r\n";
-            }
-
-            // location
-            charText += "Current location: " + this.location.name + " (" + this.location.province.name + ")\r\n";
-
-            // language
-            charText += "Language: " + this.language.GetName() + "\r\n";
-
-            // days left
-            charText += "Days remaining: " + this.days + "\r\n";
-
-            // stature
-            charText += "Stature: " + this.CalculateStature() + "\r\n";
-            charText += "  (base stature: " + this.CalculateStature(false) + " | modifier: " + this.statureModifier + ")\r\n";
-
-            // management rating
-            charText += "Management: " + this.management + "\r\n";
-
-            // combat rating
-            charText += "Combat: " + this.combat + "\r\n";
-
-            // traits list
-            charText += "Trait:\r\n";
-            for (int i = 0; i < this.traits.Length; i++)
-            {
-                charText += "  - " + this.traits[i].Item1.name + " (level " + this.traits[i].Item2 + ")\r\n";
-            }
-
-            // whether inside/outside the keep
-            if (this.inKeep)
-            {
-                charText += "Inside";
-            }
-            else
-            {
-                charText += "Outside";
-            }
-            charText += " the keep\r\n";
-
-            if (showFullDetails)
-            {
-                // marital status
-                NonPlayerCharacter thisSpouse = null;
-                charText += "Marital status: ";
-                if (!String.IsNullOrWhiteSpace(this.spouse))
-                {
-                    // get spouse
-                    if (Globals_Game.npcMasterList.ContainsKey(this.spouse))
-                    {
-                        thisSpouse = Globals_Game.npcMasterList[this.spouse];
-                    }
-
-                    if (thisSpouse != null)
-                    {
-                        charText += "happily married to " + thisSpouse.firstName + " " + thisSpouse.familyName;
-                        charText += " (ID: " + this.spouse + ").";
-                    }
-                    else
-                    {
-                        charText += "apparently married (but your spouse cannot be identified).";
-                    }
-                }
-                else
-                {
-                    charText += "not married.";
-                }
-                charText += "\r\n";
-
-                // if pregnant
-                if (!this.isMale)
-                {
-                    charText += "Pregnancy status: ";
-                    if (!this.isPregnant)
-                    {
-                        charText += "not ";
-                    }
-                    charText += "pregnant\r\n";
-                }
-
-                // if spouse pregnant
-                else
-                {
-                    if (thisSpouse != null)
-                    {
-                        if (thisSpouse.isPregnant)
-                        {
-                            charText += "Your spouse is pregnant (congratulations!)\r\n";
-                        }
-                        else
-                        {
-                            charText += "Your spouse is not pregnant\r\n";
-                        }
-                    }
-                }
-
-                // engaged
-                charText += "You are ";
-                if (!String.IsNullOrWhiteSpace(this.fiancee))
-                {
-                    charText += "engaged to be married to ID " + this.fiancee;
-                }
-                else
-                {
-                    charText += "not engaged to be married";
-                }
-                charText += "\r\n";
-
-                // father
-                charText += "Father's ID: ";
-                if (!String.IsNullOrWhiteSpace(this.father))
-                {
-                    charText += this.father;
-                }
-                else
-                {
-                    charText += "N/A";
-                }
-                charText += "\r\n";
-
-                // mother
-                charText += "Mother's ID: ";
-                if (!String.IsNullOrWhiteSpace(this.mother))
-                {
-                    charText += this.mother;
-                }
-                else
-                {
-                    charText += "N/A";
-                }
-                charText += "\r\n";
-
-                // head of family
-                charText += "Head of family's ID: ";
-                if (!String.IsNullOrWhiteSpace(this.familyID))
-                {
-                    charText += this.familyID;
-                }
-                else
-                {
-                    charText += "N/A";
-                }
-                charText += "\r\n";
-            }
-
-            // gather additional information for PC/NPC
-            bool isPC = this is PlayerCharacter;
-            if (isPC)
-            {
-                if (showFullDetails)
-                {
-                    charText += (this as PlayerCharacter).DisplayPlayerCharacter();
-                }
-            }
-            else
-            {
-                charText += (this as NonPlayerCharacter).DisplayNonPlayerCharacter(observer);
-            }
-
-
-            // if TITLES are to be shown
-            if (showTitles)
-            {
-                charText += "\r\n\r\n------------------ TITLES ------------------\r\n\r\n";
-
-                // kingdoms
-                foreach (string titleEntry in this.myTitles)
-                {
-                    // get kingdom
-                    Place thisPlace = null;
-
-                    if (Globals_Game.kingdomMasterList.ContainsKey(titleEntry))
-                    {
-                        thisPlace = Globals_Game.kingdomMasterList[titleEntry];
-                    }
-
-                    if (thisPlace != null)
-                    {
-                        // get correct title
-                        charText += thisPlace.rank.GetName(this.language).ToUpper() + " (rank " + thisPlace.rank.id + ") of ";
-                        // get kingdom details
-                        charText += thisPlace.name + " (" + titleEntry + ")\r\n";
-                    }
-                }
-                charText += "\r\n";
-
-                // provinces
-                charText += "PROVINCES:\r\n";
-                int provCount = 0;
-                foreach (string titleEntry in this.myTitles)
-                {
-                    // get province
-                    Place thisPlace = null;
-
-                    if (Globals_Game.provinceMasterList.ContainsKey(titleEntry))
-                    {
-                        thisPlace = Globals_Game.provinceMasterList[titleEntry];
-                    }
-
-                    if (thisPlace != null)
-                    {
-                        // get correct title
-                        charText += thisPlace.rank.GetName(this.language) + " (rank " + thisPlace.rank.id + ") of ";
-
-                        // get province details
-                        charText += thisPlace.name + " (" + titleEntry + ")\r\n";
-
-                        provCount++;
-                    }
-                }
-                if (provCount < 1)
-                {
-                    charText += "None\r\n";
-                }
-                charText += "\r\n";
-
-                // fiefs
-                // provinces
-                charText += "FIEFS:\r\n";
-                foreach (string titleEntry in this.myTitles)
-                {
-                    // get fief
-                    Place thisPlace = null;
-
-                    if (Globals_Game.fiefMasterList.ContainsKey(titleEntry))
-                    {
-                        thisPlace = Globals_Game.fiefMasterList[titleEntry];
-                    }
-
-                    if (thisPlace != null)
-                    {
-                        // get correct title
-                        charText += thisPlace.rank.GetName((thisPlace as Fief).language) + " (rank " + thisPlace.rank.id + ") of ";
-                        // get fief details
-                        charText += thisPlace.name + " (" + titleEntry + ")\r\n";
-                    }
-                }
-            }
-
-            return charText;
-        }
+        
 
         /// <summary>
         /// Allows a character to propose marriage between himself and a female family member of another player 
@@ -7989,10 +7589,45 @@ namespace JominiEngine
         /// <param name="pID">String holding ID of player who is currently playing this PlayerCharacter</param>
         /// <param name="myA">List (string) holding character's armies (id)</param>
         /// <param name="myS">List<string> holding character's sieges (id)</param>
-        public PlayerCharacter_Serialised(string id, String firstNam, String famNam, Tuple<uint, byte> dob, bool isM, string nat, bool alive, Double mxHea, Double vir,
-            List<string> go, string lang, double day, Double stat, Double mngmnt, Double cbt, Tuple<string, int>[] trt, bool inK, bool preg, String famID,
-            String sp, String fath, String moth, List<String> myTi, string fia, bool outl, uint pur, List<string> npcs, List<string> ownedF, List<string> ownedP, String home, String ancHome, List<string> myA,
-            List<string> myS, Dictionary<string, Ailment> ails = null, string loc = null, String aID = null, String pID = null)
+        public PlayerCharacter_Serialised(
+            string id, 
+            String firstNam, 
+            String famNam, 
+            Tuple<uint, byte> dob, 
+            bool isM, 
+            string nat, 
+            bool alive, 
+            Double mxHea, 
+            Double vir,
+            List<string> go, 
+            string lang, 
+            double day, 
+            Double stat, 
+            Double mngmnt, 
+            Double cbt, 
+            Tuple<string, int>[] trt, 
+            bool inK,
+            bool preg, 
+            String famID,
+            String sp, 
+            String fath, 
+            String moth, 
+            List<String> myTi, 
+            string fia, 
+            bool outl, 
+            uint pur, 
+            List<string> npcs, 
+            List<string> ownedF, 
+            List<string> ownedP, 
+            String home, 
+            String ancHome,
+            List<string> myA,
+            List<string> myS, 
+            Dictionary<string, Ailment> ails = null, 
+            string loc = null, 
+            String aID = null, 
+            String pID = null
+            )
             : base(id, firstNam, famNam, dob, isM, nat, alive, mxHea, vir, go, lang, day, stat, mngmnt, cbt, trt, inK, preg, famID, sp, fath, moth, myTi, fia, ails, loc, aID)
         {
             // VALIDATION
@@ -8166,9 +7801,39 @@ namespace JominiEngine
         /// <param name="sal">string holding NPC's wage</param>
         /// <param name="inEnt">bool denoting if in employer's entourage</param>
         /// <param name="isH">bool denoting if is player's heir</param>
-        public NonPlayerCharacter_Serialised(String id, String firstNam, String famNam, Tuple<uint, byte> dob, bool isM, string nat, bool alive, Double mxHea, Double vir,
-            List<string> go, string lang, double day, Double stat, Double mngmnt, Double cbt, Tuple<string, int>[] trt, bool inK, bool preg, String famID,
-            String sp, String fath, String moth, List<String> myTi, string fia, uint sal, bool inEnt, bool isH, Dictionary<string, Ailment> ails = null, string loc = null, String aID = null, String empl = null)
+        public NonPlayerCharacter_Serialised(
+            String id,
+            String firstNam,
+            String famNam,
+            Tuple<uint, byte> dob, 
+            bool isM, 
+            string nat,
+            bool alive, 
+            Double mxHea,
+            Double vir,
+            List<string> go,
+            string lang,
+            double day,
+            Double stat,
+            Double mngmnt,
+            Double cbt,
+            Tuple<string, int>[] trt,
+            bool inK, 
+            bool preg, 
+            String famID,
+            String sp,
+            String fath,
+            String moth,
+            List<String> myTi,
+            string fia,
+            uint sal,
+            bool inEnt,
+            bool isH, 
+            Dictionary<string, Ailment> ails = null,
+            string loc = null, 
+            String aID = null,
+            String empl = null
+            )
             : base(id, firstNam, famNam, dob, isM, nat, alive, mxHea, vir, go, lang, day, stat, mngmnt, cbt, trt, inK, preg, famID, sp, fath, moth, myTi, fia, ails, loc, aID)
         {
             // VALIDATION

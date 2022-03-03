@@ -1,0 +1,11 @@
+ID,Name,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value,Effect ID,Effect Value
+,,,,,,,,,,,,,,,,,,,
+trait_1,Command,battle,0.4,siege,0.4,npcHire,0.2,,,,,,,,,,,,
+trait_2,Chivalry,famExpense,0.2,fiefExpense,0.1,fiefLoy,0.1,npcHire,0.1,siege,0.1,,,,,,,,
+trait_3,Abrasiveness,battle,0.15,death,0.05,fiefExpense,-0.05,famExpense,0.05,time,0.05,siege,-0.1,,,,,,
+trait_4,Accountancy,time,0.1,fiefExpense,-0.2,famExpense,-0.02,fiefLoy,-0.05,,,,,,,,,,
+trait_5,Stupidity,battle,-0.4,death,0.05,fiefExpense,0.02,famExpense,0.2,fiefLoy,-0.1,npcHire,-0.1,time,-0.1,siege,-0.4,stealth,-0.4
+trait_6,Robust,virility,0.2,npcHire,0.05,fiefLoy,0.05,death,-0.2,,,,,,,,,,
+trait_7,Pious,virility,-0.2,npcHire,0.01,fiefLoy,0.01,time,-0.1,,,,,,,,,,
+trait_8,Paranoia,virility,-0.3,perception,0.4,fiefLoy,-0.05,,,,,,,,,,,,
+trait_9,Cunning,perception,0.1,stealth,0.3,,,,,,,,,,,,,,

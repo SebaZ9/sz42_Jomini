@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "oQBg3S/EzCBAldPx922WeWp/Xy3Wit2mu87gwUlCk0G5GVFMBQcbwXNtD3U1F1XMnpiAxVtw29NMTNUAki47vw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\lubex\\source\\repos\\JominiGame\\JominiEngine2\\JominiGame.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lubex\\.nuget\\packages\\protobuf-net\\3.0.101\\protobuf-net.3.0.101.nupkg.sha512",
+    "C:\\Users\\lubex\\.nuget\\packages\\protobuf-net.core\\3.0.101\\protobuf-net.core.3.0.101.nupkg.sha512",
+    "C:\\Users\\lubex\\.nuget\\packages\\quickgraph\\3.6.61119.7\\quickgraph.3.6.61119.7.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'QuickGraph 3.6.61119.7' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "QuickGraph",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
+}

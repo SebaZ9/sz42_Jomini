@@ -62,7 +62,7 @@ namespace JominiEngine
         /// <returns>SortedList of JournalEntrys</returns>
         /// <param name="yr">Year to search for</param>
         /// <param name="seas">Season to search for</param>
-        public SortedList<uint, JournalEntry> GetEventsOnDate(uint yr = 9999, Byte seas = 99)
+        public SortedList<uint, JournalEntry> GetEventsOnDate(uint yr = 9999, byte seas = 99)
         {
             SortedList<uint, JournalEntry> matchingEntries = new SortedList<uint, JournalEntry>();
 

@@ -1,0 +1,12 @@
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.csproj.AssemblyReference.cache
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.AssemblyInfoInputs.cache
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.AssemblyInfo.cs
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.csproj.CoreCompileInputs.cache
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\bin\Debug\net6.0\JominiGame.deps.json
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\bin\Debug\net6.0\JominiGame.dll
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\bin\Debug\net6.0\ref\JominiGame.dll
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\bin\Debug\net6.0\JominiGame.pdb
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.dll
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\ref\JominiGame.dll
+C:\Users\lubex\source\repos\JominiGame\JominiEngine2\obj\Debug\net6.0\JominiGame.pdb

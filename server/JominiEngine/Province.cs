@@ -188,7 +188,7 @@ namespace JominiEngine
         public void TransferOwnership(PlayerCharacter newOwner)
         {
             // get current title holder
-            Character titleHolder = this.GetTitleHolder();
+            Character titleHolder = GetTitleHolder();
 
             // remove from current title holder's titles
             titleHolder.myTitles.Remove(this.id);

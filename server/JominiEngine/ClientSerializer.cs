@@ -7,7 +7,8 @@ namespace JominiEngine
 {
     /// <summary>
     /// Serializes several server-side objects into a a format more appropriate for client-side
-	/// Any data which does not change and will not give players an unfair advantage should be serialized and sent to the client in order to reduce the amount of data transferred over network
+	/// Any data which does not change and will not give players an unfair advantage should be serialized and
+    /// sent to the client in order to reduce the amount of data transferred over network
     /// </summary>
     public class ClientSerializer
     {

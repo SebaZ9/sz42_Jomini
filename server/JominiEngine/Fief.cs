@@ -3020,11 +3020,42 @@ namespace JominiEngine {
         /// <param name="pil">bool indicating whether pillage has occurred in the fief (current season)</param>
         /// <param name="trans">Dictionary<string, string[]> containing troop detachments in the fief awaiting transfer</param>
         /// <param name="sge">String holding siegeID of active siege</param>
-        public Fief_Serialised(String id, String nam, string prov, int pop, Double fld, Double ind, uint trp, Double tx,
-            Double txNxt, uint offNxt, uint garrNxt, uint infraNxt, uint keepNxt, double[] finCurr, double[] finPrev,
-            Double kpLvl, Double loy, char stat, string lang, string terr, List<string> chars, List<string> barChars, List<string> barNats,
-            double bailInF, int treas, List<string> arms, bool rec, Dictionary<string, ProtoDetachment> trans, bool pil, byte r, String tiHo = null,
-            string own = null, string ancOwn = null, string bail = null, string sge = null)
+        public Fief_Serialised(
+            String id,
+            String nam,
+            string prov,
+            int pop,
+            Double fld,
+            Double ind,
+            uint trp,
+            Double tx,
+            Double txNxt,
+            uint offNxt,
+            uint garrNxt,
+            uint infraNxt,
+            uint keepNxt,
+            double[] finCurr,
+            double[] finPrev,
+            Double kpLvl,
+            Double loy,
+            char stat,
+            string lang,
+            string terr,
+            List<string> chars,
+            List<string> barChars,
+            List<string> barNats,
+            double bailInF,
+            int treas,
+            List<string> arms,
+            bool rec,
+            Dictionary<string, ProtoDetachment> trans,
+            bool pil,
+            byte r,
+            String tiHo = null,
+            string own = null,
+            string ancOwn = null,
+            string bail = null,
+            string sge = null)
             : base(id, nam, own: own, r: r, tiHo: tiHo) {
             // VALIDATION
 

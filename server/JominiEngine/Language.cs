@@ -13,7 +13,7 @@ namespace JominiEngine
         /// <summary>
         /// Holds language ID
         /// </summary>
-        public String id { get; set; }
+        public string id { get; set; }
         /// <summary>
         /// Holds base language
         /// </summary>
@@ -83,41 +83,21 @@ namespace JominiEngine
         /// <summary>
         /// Holds base langauge ID
         /// </summary>
-        public String id { get; set; }
+        public string id { get; set; }
         /// <summary>
         /// Holds base language name
         /// </summary>
-        public String name { get; set; }
+        public string name { get; set; }
 
         /// <summary>
         /// Constructor for BaseLanguage
         /// </summary>
         /// <param name="id">String holding language ID</param>
         /// <param name="nam">String holding language name</param>
-        public BaseLanguage(String id, String nam)
+        public BaseLanguage(string BaseLangID, string Name)
         {
-            // VALIDATION
-
-            // ID
-            // trim
-            id = id.Trim();
-
-            if (!Utility_Methods.ValidateLanguageID(id, "baseLang"))
-            {
-                throw new InvalidDataException("BaseLanguage ID must have the format 'lang_' followed by 1-2 letters");
-            }
-
-            // NAM
-            // trim and ensure 1st is uppercase
-            nam = Utility_Methods.FirstCharToUpper(nam.Trim());
-
-            if (!Utility_Methods.ValidateName(nam))
-            {
-                throw new InvalidDataException("BaseLanguage name must be 1-40 characters long and contain only valid characters (a-z and ') or spaces");
-            }
-
-            this.id = id;
-            this.name = nam;
+            this.id = BaseLangID;
+            this.name = Name;
         }
 
         /// <summary>

@@ -1,0 +1,7 @@
+ID,Name,Modifier Value
+,,
+terr_F,Forest,1.5
+terr_H,Hills,1.5
+terr_M,Mountains,15
+terr_MX,Impassable mountains,91
+terr_P,Plains,1

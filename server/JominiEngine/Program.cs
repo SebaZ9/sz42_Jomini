@@ -74,7 +74,7 @@ namespace JominiEngine
             var encryptString = "_encrypted_";
             string datePatern = "MM_dd_H_mm";
             logFilePath = "TestRun_NoSessions"+encryptString + DateTime.Now.ToString(datePatern) + ".txt";
-
+            Console.WriteLine("Program launch");
             Globals_Server.LogFile = new System.IO.StreamWriter(logFilePath); 
             InitialiseGameState();
             SetUpForDemo();

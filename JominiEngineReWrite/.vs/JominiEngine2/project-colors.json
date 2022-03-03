@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "516a3357-c920-45a9-801c-f5e180d12ba8": {
+      "ProjectGuid": "516a3357-c920-45a9-801c-f5e180d12ba8",
+      "DisplayName": "JominiGame",
+      "ColorIndex": 0
+    },
+    "aed093bc-143d-4fd6-8b55-aa898acedf66": {
+      "ProjectGuid": "aed093bc-143d-4fd6-8b55-aa898acedf66",
+      "DisplayName": "JominiServer",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "865368d2-4f16-4820-871b-12335c3d82fc": {
+      "ProjectGuid": "865368d2-4f16-4820-871b-12335c3d82fc",
+      "DisplayName": "ProtoMessageClient",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

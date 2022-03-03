@@ -1290,14 +1290,26 @@ namespace JominiEngine
 
                 // create financial data arrays
                 // current
-                double[] finCurr = new double[] { Convert.ToDouble(fiefData[14]), Convert.ToDouble(fiefData[15]),
-                    Convert.ToDouble(fiefData[16]), Convert.ToDouble(fiefData[17]), Convert.ToDouble(fiefData[18]),
-                    Convert.ToDouble(fiefData[19]), Convert.ToDouble(fiefData[20]), Convert.ToDouble(fiefData[21]),
-               Convert.ToDouble(fiefData[22]), Convert.ToDouble(fiefData[23]), Convert.ToDouble(fiefData[24]),
-                Convert.ToDouble(fiefData[25]), Convert.ToDouble(fiefData[26]), Convert.ToDouble(fiefData[27]) };
+                double[] finCurr = new double[] {
+                    Convert.ToDouble(fiefData[14]),
+                    Convert.ToDouble(fiefData[15]),
+                    Convert.ToDouble(fiefData[16]),
+                    Convert.ToDouble(fiefData[17]),
+                    Convert.ToDouble(fiefData[18]),
+                    Convert.ToDouble(fiefData[19]),
+                    Convert.ToDouble(fiefData[20]),
+                    Convert.ToDouble(fiefData[21]),
+                    Convert.ToDouble(fiefData[22]),
+                    Convert.ToDouble(fiefData[23]),
+                    Convert.ToDouble(fiefData[24]),
+                    Convert.ToDouble(fiefData[25]),
+                    Convert.ToDouble(fiefData[26]),
+                    Convert.ToDouble(fiefData[27])
+                };
 
                 // previous
-                double[] finPrev = new double[] { Convert.ToDouble(fiefData[28]), Convert.ToDouble(fiefData[29]),
+                double[] finPrev = new double[] {
+                    Convert.ToDouble(fiefData[28]), Convert.ToDouble(fiefData[29]),
                     Convert.ToDouble(fiefData[30]), Convert.ToDouble(fiefData[31]), Convert.ToDouble(fiefData[32]),
                     Convert.ToDouble(fiefData[33]), Convert.ToDouble(fiefData[34]), Convert.ToDouble(fiefData[35]),
                Convert.ToDouble(fiefData[36]), Convert.ToDouble(fiefData[37]), Convert.ToDouble(fiefData[38]),
@@ -1329,15 +1341,41 @@ namespace JominiEngine
                 }
 
                 // create Fife_Serialised object
-                thisFiefSer = new Fief_Serialised(fiefData[1], fiefData[2], fiefData[3], Convert.ToInt32(fiefData[4]),
-                    Convert.ToDouble(fiefData[5]), Convert.ToDouble(fiefData[6]), Convert.ToUInt32(fiefData[7]),
-                    Convert.ToDouble(fiefData[8]), Convert.ToDouble(fiefData[9]), Convert.ToUInt32(fiefData[10]),
-                    Convert.ToUInt32(fiefData[11]), Convert.ToUInt32(fiefData[12]), Convert.ToUInt32(fiefData[13]),
-                    finCurr, finPrev, Convert.ToDouble(fiefData[42]), Convert.ToDouble(fiefData[43]),
-                    Convert.ToChar(fiefData[44]), fiefData[45], fiefData[46], characters, barredChars,
-                    barredNats, Convert.ToDouble(fiefData[47]), Convert.ToInt32(fiefData[48]), armies,
-                    Convert.ToBoolean(fiefData[49]), new Dictionary<string, ProtoDetachment>(), Convert.ToBoolean(fiefData[50]),
-                    Convert.ToByte(fiefData[51]), tiHo: tiHo, own: own, ancOwn: ancOwn, bail: bail, sge: sge);
+                thisFiefSer = new Fief_Serialised(
+                    fiefData[1],
+                    fiefData[2], 
+                    fiefData[3],
+                    Convert.ToInt32(fiefData[4]),
+                    Convert.ToDouble(fiefData[5]),
+                    Convert.ToDouble(fiefData[6]),
+                    Convert.ToUInt32(fiefData[7]),
+                    Convert.ToDouble(fiefData[8]),
+                    Convert.ToDouble(fiefData[9]),
+                    Convert.ToUInt32(fiefData[10]),
+                    Convert.ToUInt32(fiefData[11]),
+                    Convert.ToUInt32(fiefData[12]),
+                    Convert.ToUInt32(fiefData[13]),
+                    finCurr,
+                    finPrev,
+                    Convert.ToDouble(fiefData[42]),
+                    Convert.ToDouble(fiefData[43]),
+                    Convert.ToChar(fiefData[44]),
+                    fiefData[45],
+                    fiefData[46],
+                    characters,
+                    barredChars,
+                    barredNats,
+                    Convert.ToDouble(fiefData[47]),
+                    Convert.ToInt32(fiefData[48]),
+                    armies,
+                    Convert.ToBoolean(fiefData[49]),
+                    new Dictionary<string, ProtoDetachment>(),
+                    Convert.ToBoolean(fiefData[50]),
+                    Convert.ToByte(fiefData[51]),
+                    tiHo: tiHo,
+                    own: own,
+                    ancOwn: ancOwn,
+                    bail: bail,sge: sge);
             }
             // catch exception that could result from incorrect conversion of string to numeric 
             catch (FormatException fe)
@@ -1790,14 +1828,45 @@ namespace JominiEngine
                 }
 
                 // create PlayerCharacter_Serialised object
-                thisPcSer = new PlayerCharacter_Serialised(pcData[1], pcData[2], pcData[3], dob, Convert.ToBoolean(pcData[6]),
-                    pcData[7], Convert.ToBoolean(pcData[8]), Convert.ToDouble(pcData[9]), Convert.ToDouble(pcData[10]),
-                    new List<string>(), pcData[11], Convert.ToDouble(pcData[12]), Convert.ToDouble(pcData[13]),
-                    Convert.ToDouble(pcData[14]), Convert.ToDouble(pcData[15]), traits, Convert.ToBoolean(pcData[16]),
-                    Convert.ToBoolean(pcData[17]), pcData[18], pcData[19], pcData[20], pcData[21], myTitles,
-                    pcData[22], Convert.ToBoolean(pcData[23]), Convert.ToUInt32(pcData[24]), myNPCs, myOwnedFiefs,
-                    myOwnedProvinces, pcData[25], pcData[26], myArmies, mySieges, ails: new Dictionary<string, Ailment>(),
-                    loc: loc, aID: aID, pID: pID);
+                thisPcSer = new PlayerCharacter_Serialised(
+                    pcData[1],
+                    pcData[2],
+                    pcData[3],
+                    dob,
+                    Convert.ToBoolean(pcData[6]),
+                    pcData[7], 
+                    Convert.ToBoolean(pcData[8]), 
+                    Convert.ToDouble(pcData[9]), 
+                    Convert.ToDouble(pcData[10]),
+                    new List<string>(), 
+                    pcData[11], 
+                    Convert.ToDouble(pcData[12]), 
+                    Convert.ToDouble(pcData[13]),
+                    Convert.ToDouble(pcData[14]), 
+                    Convert.ToDouble(pcData[15]), 
+                    traits, 
+                    Convert.ToBoolean(pcData[16]),
+                    Convert.ToBoolean(pcData[17]), 
+                    pcData[18], 
+                    pcData[19], 
+                    pcData[20], 
+                    pcData[21], 
+                    myTitles,
+                    pcData[22], 
+                    Convert.ToBoolean(pcData[23]), 
+                    Convert.ToUInt32(pcData[24]), 
+                    myNPCs, 
+                    myOwnedFiefs,
+                    myOwnedProvinces, 
+                    pcData[25], 
+                    pcData[26], 
+                    myArmies, 
+                    mySieges, 
+                    ails: new Dictionary<string, Ailment>(),
+                    loc: loc, 
+                    aID: aID, 
+                    pID: pID
+                    );
             }
             // catch exception that could result from incorrect conversion of string to numeric 
             catch (FormatException fe)
@@ -1972,13 +2041,39 @@ namespace JominiEngine
                 }
 
                 // create NonPlayerCharacter_Serialised object
-                thisNpcSer = new NonPlayerCharacter_Serialised(npcData[1], npcData[2], npcData[3], dob, Convert.ToBoolean(npcData[6]),
-                    npcData[7], Convert.ToBoolean(npcData[8]), Convert.ToDouble(npcData[9]), Convert.ToDouble(npcData[10]),
-                    new List<string>(), npcData[11], Convert.ToDouble(npcData[12]), Convert.ToDouble(npcData[13]),
-                    Convert.ToDouble(npcData[14]), Convert.ToDouble(npcData[15]), traits, Convert.ToBoolean(npcData[16]),
-                    Convert.ToBoolean(npcData[17]), npcData[18], npcData[19], npcData[20], npcData[21], myTitles, npcData[22],
-                    Convert.ToUInt32(npcData[23]), Convert.ToBoolean(npcData[24]), Convert.ToBoolean(npcData[25]),
-                    ails: new Dictionary<string, Ailment>(), loc: loc, aID: aID, empl: boss);
+                thisNpcSer = new NonPlayerCharacter_Serialised(
+                    npcData[1], 
+                    npcData[2], 
+                    npcData[3], 
+                    dob, 
+                    Convert.ToBoolean(npcData[6]),
+                    npcData[7], 
+                    Convert.ToBoolean(npcData[8]), 
+                    Convert.ToDouble(npcData[9]), 
+                    Convert.ToDouble(npcData[10]),
+                    new List<string>(), 
+                    npcData[11],
+                    Convert.ToDouble(npcData[12]),
+                    Convert.ToDouble(npcData[13]),
+                    Convert.ToDouble(npcData[14]),
+                    Convert.ToDouble(npcData[15]),
+                    traits,
+                    Convert.ToBoolean(npcData[16]),
+                    Convert.ToBoolean(npcData[17]),
+                    npcData[18],
+                    npcData[19],
+                    npcData[20],
+                    npcData[21], 
+                    myTitles,
+                    npcData[22],
+                    Convert.ToUInt32(npcData[23]),
+                    Convert.ToBoolean(npcData[24]),
+                    Convert.ToBoolean(npcData[25]),
+                    ails: new Dictionary<string, Ailment>(),
+                    loc: loc,
+                    aID: aID,
+                    empl: boss
+                    );
             }
             // catch exception that could result from incorrect conversion of string to numeric 
             catch (FormatException fe)
