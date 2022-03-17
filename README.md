@@ -15,5 +15,6 @@ To run the server:
 To run the client :
 
 - You need to change the `ipAddress` in the `Controller.cs` file to the server's ip you want to connect to.
+- And need to change the `IPAddress ip` int the `TestTextClient.cs` file to the server's ip you want to connect to.
 - Either run the project in Editor.
 - Or build the project to an executable. 
